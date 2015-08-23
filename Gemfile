@@ -8,6 +8,10 @@ gem 'pg'
 
 gem 'bower'
 
+gem 'devise_token_auth'
+
+gem 'omniauth'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
