@@ -40,3 +40,6 @@ pickle-email-*.html
 .DS_Store
 
 bower_components
+
+#database.yml
+/config/database.yml
