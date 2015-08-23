@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     #learn more page
     get '/learnmore' => 'learnmore#index' 
 
+    
+
+
+
   mount_devise_token_auth_for 'BusinessUser', at: 'buser_auth'
 
   mount_devise_token_auth_for 'Admin', at: 'admin_auth'

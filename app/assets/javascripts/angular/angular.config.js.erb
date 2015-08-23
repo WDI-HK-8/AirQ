@@ -11,6 +11,11 @@ app.config(['$routeProvider', '$locationProvider', '$authProvider', function($ro
     controller: 'StaticPagesCtrl'
   }).
 
+  when('/learnmore',{
+    templateUrl: "<%= asset_path('learnmore/learnmore.html') %>",
+    controller: 'LearnMoreCtrl'
+  }).
+
 
   $authProvider.configure({
     apiUrl: 'http://localhost:3000'

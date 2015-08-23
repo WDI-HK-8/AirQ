@@ -38,6 +38,7 @@ class DeviseTokenAuthCreateBusinessUsers < ActiveRecord::Migration
       t.integer :phone_number
       t.string  :email
       t.text    :address
+      t.string  :company_name
 
       ## Tokens
       t.json :tokens
