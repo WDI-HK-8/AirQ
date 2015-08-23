@@ -11,15 +11,6 @@ app.config(['$routeProvider', '$locationProvider', '$authProvider', function($ro
     controller: 'StaticPagesCtrl'
   }).
 
-  when('/signup', {
-    templateUrl: "<%=asset_path('auth/signup.html')%>",
-    controller: "SignUpCtrl"
-  }).
-
-  when('/login', {
-    templateUrl: "<%=asset_path('auth/login.html')%>",
-    controller: "LogInCtrl"
-  }).
 
   $authProvider.configure({
     apiUrl: 'http://localhost:3000'
