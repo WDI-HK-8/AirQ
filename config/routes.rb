@@ -7,6 +7,14 @@ Rails.application.routes.draw do
     #learn more page
     get '/learnmore' => 'learnmore#index' 
 
+    #user dashboard (with queues detail)
+    get '/individual_user/:id' => 'individual_user#show'
+
+    #explore (a table with all services)
+    get '/explore' => 'explore#index'
+
+    
+
   mount_devise_token_auth_for 'BusinessUser', at: 'buser_auth'
 
   mount_devise_token_auth_for 'Admin', at: 'admin_auth'

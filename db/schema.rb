@@ -87,6 +87,10 @@ ActiveRecord::Schema.define(version: 20150823141421) do
   create_table "individual_users", force: :cascade do |t|
     t.string   "provider",               default: "email", null: false
     t.string   "uid",                    default: "",      null: false
+    t.string   "email"
+    t.integer  "phone_number"
+    t.string   "first_name"
+    t.string   "last_name"
     t.string   "encrypted_password",     default: "",      null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -96,16 +100,12 @@ ActiveRecord::Schema.define(version: 20150823141421) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "email"
-    t.integer  "phone_number"
-    t.string   "first_name"
-    t.string   "last_name"
     t.json     "tokens"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "individual_users", ["email"], name: "index_individual_users_on_email", using: :btree
+  add_index "individual_users", ["email", "first_name"], name: "index_individual_users_on_email_and_first_name", using: :btree
   add_index "individual_users", ["reset_password_token"], name: "index_individual_users_on_reset_password_token", unique: true, using: :btree
   add_index "individual_users", ["uid", "provider"], name: "index_individual_users_on_uid_and_provider", unique: true, using: :btree
 
