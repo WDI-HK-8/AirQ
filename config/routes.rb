@@ -1,15 +1,18 @@
 Rails.application.routes.draw do
   mount_devise_token_auth_for 'User', at: 'auth'
 
-  mount_devise_token_auth_for 'BizUser', at: 'auth'
+  
 
   mount_devise_token_auth_for 'Admin', at: 'admin_auth'
-  as :admin do
-    # Define routes for Admin within this block.
-  end
+
+  mount_devise_token_auth_for 'BizUser', at: 'b_auth'
   as :biz_user do
     # Define routes for BizUser within this block.
   end
+  as :admin do
+    # Define routes for Admin within this block.
+  end
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

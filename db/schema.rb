@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 20150824110052) do
     t.string   "last_sign_in_ip"
     t.string   "company_name"
     t.string   "industry_name"
-    t.text     "address"
+    t.string   "address"
     t.string   "email"
     t.string   "phone_number"
     t.json     "tokens"

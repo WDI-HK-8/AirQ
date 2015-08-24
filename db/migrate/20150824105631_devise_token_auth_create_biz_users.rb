@@ -36,7 +36,7 @@ class DeviseTokenAuthCreateBizUsers < ActiveRecord::Migration
       ## User Info
       t.string :company_name
       t.string :industry_name
-      t.text :address
+      t.string :address
       t.string :email
       t.string :phone_number
 
