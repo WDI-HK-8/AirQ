@@ -38,7 +38,7 @@ class ServicesController < ApplicationController
       render json: { message: "Cannot find service" }, status: :not_found
     else
       if @service.destroy
-        render json: {message: "Successfully deleted" }, status: :no_content
+        render json: {message: "Successfully deleted" }
       else
         render json: { message: "Unsuccessfully deleted" }, status: :bad_request 
       end

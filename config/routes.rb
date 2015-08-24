@@ -20,6 +20,10 @@ Rails.application.routes.draw do
   put '/users/:id' => 'users#update'
   # get user info
   get '/users/:id' => 'users#show'
+  # get sessions under user
+  get '/users/:id/sessions' => 'sessions#userIndex'
+
+
 
   #index services under the sun
   get '/services' => 'services#index'
@@ -36,7 +40,18 @@ Rails.application.routes.draw do
   put '/biz_users/:id' => 'biz_users#update'
   # get biz_user info
   get '/biz_users/:id' => 'biz_users#show'
+  # get sessions under biz_user
+  get '/services/:id/sessions' => 'sessions#serviceIndex'
+  # get completed session under biz_user
+  get '/services/:id/sessions/completed' => 'sessions#completedServiceIndex'
+  
 
+
+  #CRUD on sessions
+  # user post session; joins a queue
+  post '/sessions' => 'sessions#create'
+  # user delete session; unqueue 
+  delete '/sessions/:id' => 'sessions#destroy'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
