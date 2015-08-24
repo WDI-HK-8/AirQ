@@ -22,8 +22,20 @@ Rails.application.routes.draw do
   # get user info
   get '/users/:id' => 'users#show'
 
+  #index services under the sun
+  get '/services' => 'services#index'
 
+  #biz_user add service
+  post '/services' => 'services#create'
 
+  #biz_user update service name
+  put '/services/:id' => 'services#update'
+
+  #biz_user selects one service
+  get '/services/:id' => 'services#show'
+
+  #biz_user delete service
+  delete '/services/:id' => 'services#destroy'
 
 
   # Example of regular route:
