@@ -34,11 +34,16 @@ body{
 
 #main_text{
   position: absolute;
-  top: 50%;
-  color: #FFC900;
+  top: 30%;
+  width: 100%;
+  color: #FF4436;
   font-weight: bolder;
 }
 
 img.col-md-12{
   padding: 0px;
+}
+
+.row{
+  margin: 0px;
 }

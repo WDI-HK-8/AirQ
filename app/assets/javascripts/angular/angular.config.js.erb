@@ -16,6 +16,10 @@ app.config(['$routeProvider','$locationProvider', '$authProvider', function($rou
     when('/signin', {
       // templateUrl: "<%= asset_path('auth/signin.html')%>",
       controller: 'SignInCtrl'
+    }).
+    when('/learn_more', {
+      templateUrl: "<%= asset_path('auth/learn_more.html')%>",
+      controller: 'LearnMoreCtrl'
     })
 
   $authProvider.configure({
