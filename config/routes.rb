@@ -13,11 +13,18 @@ Rails.application.routes.draw do
     # Define routes for Admin within this block.
   end
   
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
+  #static pages
   root 'static_pages#index'
+
+  # amend user info
+  put '/users/:id' => 'users#update'
+
+  # get user info
+  get '/users/:id' => 'users#show'
+
+
+
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
