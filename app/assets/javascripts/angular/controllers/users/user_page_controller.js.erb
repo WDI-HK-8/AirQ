@@ -1,0 +1,3 @@
+app.controller('UserCtrl', ['$scope', '$http', '$auth', '$location', 'UserServices', function($scope, $http, $auth, $location, UserServices){
+  $scope.user = UserServices.user;
+}]);

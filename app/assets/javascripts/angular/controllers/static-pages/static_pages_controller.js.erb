@@ -30,7 +30,7 @@ app.controller('StaticPagesCtrl', ['$scope', '$http', '$auth', '$location', 'Use
 
         //store user data on successful login
         UserServices.user = response;
-        $location.path('/user');
+        $location.path('/users');
       })
       .catch(function(response){
         console.log(response)

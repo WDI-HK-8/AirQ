@@ -8,9 +8,9 @@ app.config(['$routeProvider','$locationProvider', '$authProvider', function($rou
       templateUrl: "<%= asset_path('static_pages/index.html') %>",
       controller: 'StaticPagesCtrl'
     }).
-    when('/signin', {
-      // templateUrl: "<%= asset_path('auth/signin.html')%>",
-      controller: 'SignInCtrl'
+    when('/users', {
+      templateUrl: "<%= asset_path('auth/user_page.html')%>",
+      controller: 'UserCtrl'
     }).
     when('/learn_more', {
       templateUrl: "<%= asset_path('static_pages/learn_more.html')%>",
