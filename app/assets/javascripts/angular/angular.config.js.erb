@@ -21,8 +21,14 @@ app.config(['$routeProvider','$locationProvider', '$authProvider', function($rou
       controller: 'SignInCtrl'
     }).
     when('/learn_more', {
-      templateUrl: "<%= asset_path('auth/learn_more.html')%>",
-      controller: 'LearnMoreCtrl'
+      templateUrl: "<%= asset_path('static_pages/learn_more.html')%>",
+      controller: 'LearnMoreCtrl',
+      css: "<%= asset_path('stylesheets/learn_more.css')%>"
+    }).
+    when('/FAQ', {
+      templateUrl: "<%= asset_path('static_pages/faq.html')%>",
+      controller: 'FaqCtrl'
+      // css: "<%= asset_path('stylesheets/learn_more.css')%>"
     })
 
   $authProvider.configure([
