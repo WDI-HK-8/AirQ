@@ -44,7 +44,7 @@ Rails.application.routes.draw do
   get '/services/:id/sessions' => 'sessions#serviceIndex'
   # get completed session under biz_user
   get '/services/:id/sessions/completed' => 'sessions#completedServiceIndex'
-  
+
 
 
   #CRUD on sessions
@@ -52,6 +52,8 @@ Rails.application.routes.draw do
   post '/sessions' => 'sessions#create'
   # user delete session; unqueue 
   delete '/sessions/:id' => 'sessions#destroy'
+  # biz_user changes the status of is_completed? from false to true
+  put '/sessions/:id' => 'sessions#update'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
