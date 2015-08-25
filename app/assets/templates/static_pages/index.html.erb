@@ -1,4 +1,19 @@
-<navbar></navbar>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/#/"><img id="logo" src="<%= asset_path('logo.png')%>" alt="AirQ"> | AirQ</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">      
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href id="SignIn" data-toggle="modal" class="btn btn-primary" data-target="#signInModal">Sign In</a></li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 
 <div class="container">
   <div class="row col-md-12">
@@ -22,75 +37,174 @@
       <h2>Business Signup</h2>
       <p>If time is money, then your customers will definitely appreciate a faster and convenient way of doing business with you.</p>
       <p>sign up as a business user</p>
-      <button class="btn btn-success" ng-click="">Business Signup</button>
+      <button id="BizUserSignup" type="button" class="btn btn-success" data-toggle="modal" data-target="#bizUserSignUpModal">Business Signup</button>
     </article>
   </div>
 </div>
 
 <!-- modal for user sign up -->
 <div class="modal fade" id="userSignUpModal" role="dialog" aria-labelledby="gridSystemModalLabel">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog" role="form">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="gridSystemModalLabel">Welcome to Air Q! Please fill out the form below for user sign up</h4>
       </div>
       
-      <form ng-submit="signup()" ng-init="registrationForm">
         <div class="modal-body">
-          <div class="container-fluid">
-          
-            <div class="row form-group">
-              <div class="col-md-offset-1 col-md-4">First Name^</div>
-              <div class="col-md-7">
-                <input class="col-md-12 form-control" name="first_name" type="text" placeholder="John.." ng-model="registrationForm.first_name">
+          <form ng-submit="signup()" ng-init="registrationForm">
+              <div class="row form-group">
+                <div class="col-md-offset-1 col-md-4">First Name^</div>
+                <div class="col-md-7">
+                  <input class="col-md-12 form-control" name="first_name" type="text" placeholder="John.." ng-model="registrationForm.first_name">
+                </div>
               </div>
-            </div>
 
-            <div class="row form-group">
-              <div class="col-md-offset-1 col-md-4">Last Name^</div>
-              <div class="col-md-7">
-                <input class="col-md-12 form-control" name="last_name" type="text" placeholder="Fu.." ng-model="registrationForm.last_name">
+              <div class="row form-group">
+                <div class="col-md-offset-1 col-md-4">Last Name^</div>
+                <div class="col-md-7">
+                  <input class="col-md-12 form-control" name="last_name" type="text" placeholder="Fu.." ng-model="registrationForm.last_name">
+                </div>
               </div>
-            </div>
 
-            <div class="row form-group">
-              <div class="col-md-offset-1 col-md-4">Phone Number^</div>
-              <div class="col-md-7">
-                <input class="col-md-12 form-control" name="phone_number" type="text" placeholder="28888888" ng-model="registrationForm.phone_number">
+              <div class="row form-group">
+                <div class="col-md-offset-1 col-md-4">Phone Number^</div>
+                <div class="col-md-7">
+                  <input class="col-md-12 form-control" name="phone_number" type="text" placeholder="28888888" ng-model="registrationForm.phone_number">
+                </div>
               </div>
-            </div>
 
-            <div class="row form-group">
-              <div class="col-md-offset-1 col-md-4">Email^</div>
-              <div class="col-md-7">
-                <input class="col-md-12 form-control" name="email" type="email" placeholder="j.fu@gmail.com..." ng-model="registrationForm.email">
+              <div class="row form-group">
+                <div class="col-md-offset-1 col-md-4">Email^</div>
+                <div class="col-md-7">
+                  <input class="col-md-12 form-control" name="email" type="email" placeholder="j.fu@gmail.com..." ng-model="registrationForm.email">
+                </div>
               </div>
-            </div>
 
-            <div class="row form-group">
-              <div class="col-md-offset-1 col-md-4">Password^</div>
-              <div class="col-md-7">
-                <input class="col-md-12 form-control" name="password" type="password" placeholder="password..." ng-model="registrationForm.password">
+              <div class="row form-group">
+                <div class="col-md-offset-1 col-md-4">Password^</div>
+                <div class="col-md-7">
+                  <input class="col-md-12 form-control" name="password" type="password" placeholder="password..." ng-model="registrationForm.password">
+                </div>
               </div>
-            </div>
 
-            <div class="row form-group">
-              <div class="col-md-offset-1 col-md-4">Password_confirmation^</div>
-              <div class="col-md-7">
-                <input class="col-md-12 form-control" name="password_confirmation" type="password" placeholder="Re-type password.." ng-model="registrationForm.password_confirmation">
+              <div class="row form-group">
+                <div class="col-md-offset-1 col-md-4">Password_confirmation^</div>
+                <div class="col-md-7">
+                  <input class="col-md-12 form-control" name="password_confirmation" type="password" placeholder="Re-type password.." ng-model="registrationForm.password_confirmation">
+                </div>
               </div>
-            </div>
 
-          </div>  
+              <div class="row form-group">
+                <h5>^ represents mandatory fields</h5>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#userSignUpModal">Submit</button>  
+              </div>
+            
+          </form>
         </div>
 
-        <div class="modal-footer">
-          <h5>^ represents mandatory fields</h5>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-          <a href="/#/"><button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#userSignUpModal">Submit</button>  
-        </div>
-      </form>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
+
+
+<!-- modal for biz_user sign up -->
+<div class="modal fade" id="bizUserSignUpModal" role="dialog" aria-labelledby="gridSystemModalLabel">
+  <div class="modal-dialog" role="form">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="gridSystemModalLabel">Welcome to Air Q! Please fill out the form below for business user sign up</h4>
+      </div>
+      
+        <div class="modal-body">
+          <form ng-submit="bizsignup()" ng-init="registrationForm">
+              <div class="row form-group">
+                <div class="col-md-offset-1 col-md-4">Industry Name^</div>
+                <div class="col-md-7">
+                  <input class="col-md-12 form-control" name="industry_name" type="text" placeholder="Education..." ng-model="registrationForm.industry_name">
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-offset-1 col-md-4">Company Name^</div>
+                <div class="col-md-7">
+                  <input class="col-md-12 form-control" name="company_name" type="text" placeholder="GA.." ng-model="registrationForm.company_name">
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-offset-1 col-md-4">Address^</div>
+                <div class="col-md-7">
+                  <input class="col-md-12 form-control" name="address" type="text" placeholder="address..." ng-model="registrationForm.address">
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-offset-1 col-md-4">Email^</div>
+                <div class="col-md-7">
+                  <input class="col-md-12 form-control" name="email" type="email" placeholder="ga@gmail.com..." ng-model="registrationForm.email">
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-offset-1 col-md-4">Password^</div>
+                <div class="col-md-7">
+                  <input class="col-md-12 form-control" name="password" type="password" placeholder="password..." ng-model="registrationForm.password">
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-offset-1 col-md-4">Password_confirmation^</div>
+                <div class="col-md-7">
+                  <input class="col-md-12 form-control" name="password_confirmation" type="password" placeholder="Re-type password.." ng-model="registrationForm.password_confirmation">
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <h5>^ represents mandatory fields</h5>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#bizUserSignUpModal">Submit</button>  
+              </div>
+          </form>
+        </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+<!-- modal for user sign in -->
+<div class="modal fade" id="signInModal" role="dialog" aria-labelledby="gridSystemModalLabel">
+  <div class="modal-dialog" role="form">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="gridSystemModalLabel">Welcome to back! Please sign in!</h4>
+      </div>     
+        <div class="modal-body">
+          <form ng-submit="signin()">
+              
+              <div class="row form-group">
+                <div class="col-md-offset-1 col-md-4">Email</div>
+                <div class="col-md-7">
+                  <input class="col-md-12 form-control" name="email" type="email" placeholder="ga@gmail.com..." ng-model="loginForm.email">
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-offset-1 col-md-4">Password</div>
+                <div class="col-md-7">
+                  <input class="col-md-12 form-control" name="password" type="password" placeholder="password..." ng-model="loginForm.password">
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#signInModal">Submit</button>  
+              </div>
+          </form>
+        </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
