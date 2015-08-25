@@ -1,3 +1,12 @@
 app.controller('UserCtrl', ['$scope', '$http', '$auth', '$location', 'UserServices', function($scope, $http, $auth, $location, UserServices){
   $scope.user = UserServices.user;
+  $scope.industry_selection = null;
+  $scope.company_selection = null;
+  //set route path for backend
+  var url = "<% ENV['URL']%>" || "http://localhost:3000";
+  //call the get request when this Angular route is run
+  $http.get(url + '/services').success(function(response){
+    $scope.services = response;
+  });
+
 }]);
