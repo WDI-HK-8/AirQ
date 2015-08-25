@@ -22,13 +22,27 @@ app.controller('StaticPagesCtrl', ['$scope', '$http', '$auth', '$location', func
 
   // user log in
     $scope.signin = function(){
-      $auth.submitLogin($scope.loginForm, {config: 'bizUser'}).then(function(response){
-        console.log(response)
-        $location.path('/user');
-      })
-      .catch(function(response){
-        console.log(response)
-      })
+      console.log($scope.usertype)
+      if ($scope.usertype == 'User'){
+        $auth.submitLogin($scope.loginForm, {config: 'default'}).then(function(response){
+          console.log(response)
+          $location.path('/user');
+        })
+        .catch(function(response){
+          console.log(response)
+        })
+      } else {
+
+        $auth.submitLogin($scope.loginForm, {config: 'bizUser'}).then(function(response){
+          console.log(response)
+          $location.path('/biz_user');
+        })
+        .catch(function(response){
+          console.log(response)
+        })
+        
+      }
+
     }  
 
   // biz_user sign up

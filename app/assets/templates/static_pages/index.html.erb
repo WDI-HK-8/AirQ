@@ -8,7 +8,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">      
       <ul class="nav navbar-nav navbar-right">
-        <li><a href id="SignIn" data-toggle="modal" class="btn btn-primary" data-target="#signInModal">Sign In</a></li>
+        <li><a href id="SignIn" data-toggle="modal" data-target="#signInModal">Sign In</a></li>
         
       </ul>
     </div><!-- /.navbar-collapse -->
@@ -184,6 +184,16 @@
         <div class="modal-body">
           <form ng-submit="signin()">
               
+              <div class="row form-group">
+                <div class="col-md-offset-1 col-md-4">User type</div>
+                <div class="col-md-7">
+                  <select id="request-selector-type" class="form-control" ng-model='usertype'>
+                    <option value="User" selected="">User</option>
+                    <option value="BizUser"> Business</option>
+                  </select>
+                </div>
+              </div>
+
               <div class="row form-group">
                 <div class="col-md-offset-1 col-md-4">Email</div>
                 <div class="col-md-7">
