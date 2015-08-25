@@ -1,3 +1,64 @@
-app.controller('StaticPagesCtrl', ['$scope', function($scope){
+app.controller('StaticPagesCtrl', ['$scope', '$http', '$auth', '$location', function($scope, $http, $auth, $location){
   $scope.message = "Hello World!";
+  $scope.loginForm = {};
+
+
+
+
+
+  // user sign up
+    $scope.signup = function(){
+
+      $auth.submitRegistration($scope.registrationForm, {config: 'default'}).then(function (response){
+        console.log(response);
+        $location.path('/');
+        alert("Successful signup!") 
+      })
+      .catch(function (response) {
+        console.log(response.data.errors.full_messages);
+        alert(response.data.errors.full_messages)
+      });
+    }
+
+  // user log in
+    $scope.signin = function(){
+      console.log($scope.usertype)
+      if ($scope.usertype == 'User'){
+        $auth.submitLogin($scope.loginForm, {config: 'default'}).then(function(response){
+          console.log(response)
+          $location.path('/user');
+        })
+        .catch(function(response){
+          console.log(response)
+        })
+      } else {
+
+        $auth.submitLogin($scope.loginForm, {config: 'bizUser'}).then(function(response){
+          console.log(response)
+          $location.path('/biz_user');
+        })
+        .catch(function(response){
+          console.log(response)
+        })
+        
+      }
+
+    }  
+
+  // biz_user sign up
+    $scope.bizsignup = function(){
+      $auth.submitRegistration($scope.registrationForm, {config: 'bizUser'})
+      .then(function (response) {
+          console.log(response);
+          $location.path('/');
+          alert("Successful signup!") 
+        //handle failure
+        }).catch(function (response) {
+          console.log(response.data.errors.full_messages);
+          alert(response.data.errors.full_messages)
+        });
+    };
+
+
 }]);
+

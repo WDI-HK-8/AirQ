@@ -9,9 +9,12 @@ app.config(['$routeProvider','$locationProvider', '$authProvider', function($rou
       controller: 'StaticPagesCtrl'
     }).
     when('/signup', { 
-    //add /# from root to denote angular
-      // templateUrl: "<%= asset_path('auth/signup.html')%>",
+      // templateUrl: "<%= asset_path('auth/signup.html') %>",
       controller: 'SignUpCtrl'
+    }).
+    when('/bizsignup', { 
+      // templateUrl: "<%= asset_path('auth/signup.html') %>",
+      controller: 'BizSignUpCtrl'
     }).
     when('/signin', {
       // templateUrl: "<%= asset_path('auth/signin.html')%>",
@@ -22,8 +25,26 @@ app.config(['$routeProvider','$locationProvider', '$authProvider', function($rou
       controller: 'LearnMoreCtrl'
     })
 
-  $authProvider.configure({
-    apiUrl: 'http://localhost:3000'
-  });
+  $authProvider.configure([
+    {
+    default: {
+      apiUrl:  'http://localhost:3000'
+      }
+    },
+    {
+    bizUser: {
+      apiUrl:                'http://localhost:3000',
+      proxyIf:               function() { window.isOldIE() },
+      signOutUrl:            '/b_auth/sign_out',
+      emailSignInPath:       '/b_auth/sign_in',
+      emailRegistrationPath: '/b_auth',
+      accountUpdatePath:     '/b_auth',
+      accountDeletePath:     '/b_auth',
+      passwordResetPath:     '/b_auth/password',
+      passwordUpdatePath:    '/b_auth/password',
+      tokenValidationPath:   '/b_auth/validate_token'   
+    }
+  }
+]);
 
 }]);
