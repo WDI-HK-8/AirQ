@@ -34,12 +34,12 @@ app.config(['$routeProvider','$locationProvider', '$authProvider', function($rou
   $authProvider.configure([
     {
     default: {
-      apiUrl:  "<%= ENV['URL'] || 'http://localhost:3000' %>"
+      apiUrl:  "<%= ENV['URL'] || 'https://localhost:3000' %>"
       }
     },
     {
     bizUser: {
-      apiUrl:                "<%= ENV['URL'] || 'http://localhost:3000' %>",
+      apiUrl:                "<%= ENV['URL'] || 'https://localhost:3000' %>",
       proxyIf:               function() { window.isOldIE() },
       signOutUrl:            '/b_auth/sign_out',
       emailSignInPath:       '/b_auth/sign_in',
