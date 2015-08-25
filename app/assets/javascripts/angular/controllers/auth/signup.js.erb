@@ -1,11 +1,14 @@
 app.controller('SignUpCtrl', ['$scope', '$http', '$auth', '$location', function($scope, $http, $auth, $location){
 
+  $scope.registrationForm = {};
+
   $scope.signup = function(){
     $auth.submitRegistration($scope.registrationForm).
       //handle success
       then(function (response) {
         console.log(response);
-        $location.path('/'); 
+        $location.path('/');
+        alert("Successful signup!") 
       //handle failure
       }).catch(function (response) {
         console.log(response.data.errors.full_messages);
