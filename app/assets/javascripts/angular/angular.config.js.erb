@@ -1,5 +1,29 @@
 
-// / This file is where we configure angular
+var app = angular.module('AirQ', ['ngRoute', 'ng-token-auth']);
 
-// //var app = angular.module(name, dependency)
-// var app = angular.module('rails-instagram', ['ngRoute', 'ng-token-auth']);
+app.config(['$routeProvider','$locationProvider', '$authProvider', function($routeProvider, $locationProvider, $authProvider) {
+  // Configure Angular Routes
+  $routeProvider.
+    when('/', {
+      templateUrl: "<%= asset_path('static_pages/index.html') %>",
+      controller: 'StaticPagesCtrl'
+    }).
+    when('/signup', { 
+    //add /# from root to denote angular
+      // templateUrl: "<%= asset_path('auth/signup.html')%>",
+      controller: 'SignUpCtrl'
+    }).
+    when('/signin', {
+      // templateUrl: "<%= asset_path('auth/signin.html')%>",
+      controller: 'SignInCtrl'
+    }).
+    when('/learn_more', {
+      templateUrl: "<%= asset_path('auth/learn_more.html')%>",
+      controller: 'LearnMoreCtrl'
+    })
+
+  $authProvider.configure({
+    apiUrl: 'http://localhost:3000'
+  });
+
+}]);

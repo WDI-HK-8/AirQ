@@ -1,0 +1,8 @@
+// directive creates a navbar tag, containing everything that is defined for it
+app.directive('navbar', function(){
+  return {
+    controller: 'NavbarCtrl',
+    restrict: 'E',
+    templateUrl: "<%= asset_path('nav/navbar.html') %>"
+  }
+})
