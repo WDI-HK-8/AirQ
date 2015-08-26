@@ -6,12 +6,10 @@ app.controller('BizUserCtrl', ['$scope', '$http', '$auth', '$location', function
   $scope.form     = {};
  
   $http.get(url + '/biz_users/' + $scope.authuserid + '/services').success(function(response){
-    console.log(response)
     $scope.services = response;
   })
 
   $http.get(url + '/biz_users/' + $scope.authuserid + '/sessions').success(function(response){
-    console.log(response)
     $scope.sessions = response;
   })
 
@@ -19,8 +17,7 @@ app.controller('BizUserCtrl', ['$scope', '$http', '$auth', '$location', function
     var data = $scope.addForm
     ;
 
-    $http.post(url + '/services', data).success(function(response){
-     console.log(response) 
+    $http.post(url + '/services', data).success(function(response){ 
     })
   }
 

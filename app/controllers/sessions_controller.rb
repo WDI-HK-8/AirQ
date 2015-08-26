@@ -2,7 +2,6 @@ class SessionsController < ApplicationController
 
   def create
     @session = Session.new(session_params)
-
     if @session.save
       
     else

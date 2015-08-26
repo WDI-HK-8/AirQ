@@ -1,7 +1,7 @@
 <navbar></navbar>
-<article class="jumbotron text-center">
-  <h2>Hello!</h2>
-  Here is your account information:
+<article class="jumbotron text-center col-xs-4" id="queue_finder">
+  <h2>Hello, {{user_name}}!</h2>
+  <a href="/#/user/update">Change your account information</a>
 
   <h2>Let's create a session:</h2>
   <p>Select from the following fields of</p>
@@ -27,6 +27,29 @@
   </form>
 </article>
 
-<article>
+<article class="jumbotron col-xs-8" id="queue_list">
+  <h2>You are currently waiting for {{sessions_count}} queues</h2>
+  <table id="session_table" class=" table table-bordered table-striped" ng-repeat="session in sessions">
+    <tr class="">
+      <th>Service:</th>
+      <td>{{session.service_name}}</td>
+    </tr>
+    <tr class="">
+      <th>Company:</th>
+      <td>{{session.service_company}}</td>
+    </tr>
+    <tr class="">
+      <th>Place: </th>
+      <td>{{session.service_company_address}}</td>
+    </tr>
+    <tr class="">
+      <th>Email: </th>
+      <td>{{session.service_company_email}}</td>
+    </tr>
+    <tr class="">
+      <th>Phone: </th>
+      <td>{{session.service_company_phone_number}}</td>
+    </tr>
+  </table>
 
 </article>

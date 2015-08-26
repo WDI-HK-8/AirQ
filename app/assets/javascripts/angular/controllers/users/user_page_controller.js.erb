@@ -1,5 +1,5 @@
 app.controller('UserCtrl', ['$scope', '$http', '$auth', '$location', function($scope, $http, $auth, $location){
-  
+  var user_id = $auth.validateUser().$$state.value.id;
   $scope.industry_selection = 'Select a Industry First';
   $scope.company_selection = 'Select a Industry First';
   $scope.query = {};
@@ -8,7 +8,6 @@ app.controller('UserCtrl', ['$scope', '$http', '$auth', '$location', function($s
   //call the get request when this Angular route is run
   $http.get(url + '/biz_users').then(function(response){
     $scope.industries = response.data;
-    console.log(response);
   }).catch(function(response){
     console.log(response);
   });
@@ -16,23 +15,36 @@ app.controller('UserCtrl', ['$scope', '$http', '$auth', '$location', function($s
   //call the get request for all the services first
   $http.get(url + '/services').then(function(response){
     $scope.services = response.data;
-    console.log(response.data);
   }).catch(function(response){
     console.log(response);
   });
 
+  //call the get request for all the services first
+  $http.get(url + '/users/'+user_id+'/sessions').then(function(response){
+    $scope.sessions = response.data;
+    $scope.sessions_count = response.data.length;
+  }).catch(function(response){
+    console.log(response);
+  });
+
+  // on page load, display the sessions for this user
+  // var user_sessions = _.where($scope.sessions, {service: user_id})
+
   // create the get request for creating a session
   $scope.createSession = function(service){
     var service = _.where($scope.services, {service_name: service})
+    console.log(service);
     var data    = {
       service_id: service[0].id,
-      user_id:    $auth.validateUser().$$state.value.id
-    };
+      user_id: user_id   
+    }
+    console.log(data);
     $http.post(url + '/sessions', data).then(function(response){
-      console.log(response);
+      console.log('---->', 'You just added a new session!');
+      $location.path('/users');
     }).catch(function(response){
       console.log(response);
-    })
+    })  
 
   };
 }]);

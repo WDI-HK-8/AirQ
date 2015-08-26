@@ -31,7 +31,7 @@ app.controller('StaticPagesCtrl', ['$scope', '$http', '$auth', '$location', func
     if ($scope.usertype == 'User'){
       $auth.submitLogin($scope.loginForm, {config: 'default'})
       .then(function(response){
-        console.log(response);
+
         alert("Successful signin!"); 
         $scope.loggedIn = true;
         //store user data on successful login
@@ -45,7 +45,6 @@ app.controller('StaticPagesCtrl', ['$scope', '$http', '$auth', '$location', func
 
       $auth.submitLogin($scope.loginForm, {config: 'bizUser'})
       .then(function(response){
-        console.log(response)
 
         $location.path('/biz_users');
         $scope.loggedIn = true;
@@ -61,7 +60,6 @@ app.controller('StaticPagesCtrl', ['$scope', '$http', '$auth', '$location', func
   $scope.bizsignup = function(){
     $auth.submitRegistration($scope.registrationForm, {config: 'bizUser'})
     .then(function (response){
-      console.log(response);
       $location.path('/');
       alert("Successful signup!") 
     //handle failure
@@ -74,10 +72,8 @@ app.controller('StaticPagesCtrl', ['$scope', '$http', '$auth', '$location', func
   //users logout
   $scope.logout = function(){
     $auth.signOut().then(function(response){
-      console.log(response);
       $location.path('/');
     }).catch(function(response){
-      console.log(response);
     });
   };
 }]);
