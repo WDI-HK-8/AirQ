@@ -11,10 +11,10 @@
         <li>
           <a href="/#/FAQ">FAQs</a>
         </li>
-        <li ng-show="user == null">
+        <li ng-show="loggedIn == false">
           <a href="" id="SignIn" data-toggle="modal" data-target="#signInModal">Signin</a>
         </li>
-        <li ng-show="user != null">
+        <li ng-if="loggedIn">
           <a href="" id="SignOut" ng-click="logout()">Logout</a>
         </li>
       </ul>
