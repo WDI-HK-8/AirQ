@@ -23,11 +23,12 @@ class BizUsersController < ApplicationController
     if @industries
       render json: @industries
     end
+  end
+
 
   def sessions
     myBizUser = BizUser.find_by_id(params[:id])
     @bizusersessions = myBizUser.sessions
-    
   end
 
   private

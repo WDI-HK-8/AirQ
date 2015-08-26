@@ -27,7 +27,7 @@
           </tr>
           <tr ng-repeat="service in services" >
             <td>{{service.service_name}}</td> 
-            <td><input  type="checkbox" ng-model="services" ng-true-value=service.service_name  data-ng-false-value=''/></td>
+            <!-- <td><input  type="checkbox" ng-model="services" ng-true-value="request.service[service.service_name]"></td> -->
           </tr>
         </table>
       </div>
@@ -36,21 +36,21 @@
   <!-- main content area -->
     
     <section class="main-content col-xs-9">
-      <section>
+      <!-- <section>
       Search:<input ng-model="query" type="text"/>
-      </section>
+      </section> -->
       <div class="table-responsive">
         <table class="table table-hover">
           <tr>
             <th>Service Name</th>
-            <th>Customer First_Name</th>
-            <th>Customer Last_Name</th>
-            <th>Customer Email</th>
-            <th>Customer Phone Number</th>
+            <th>First_Name</th>
+            <th>Last_Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
             <th>Queue order time</th>
             <th>Estimated time to appointment</th>
           </tr>
-          <tr ng-repeat="session in sessions | filter:query">
+          <tr ng-repeat="session in sessions">
             <td>{{session.service_name}}</td>
             <td>{{session.user_first_name | uppercase}}</td>
             <td>{{session.user_last_name | uppercase}}</td>
@@ -69,26 +69,26 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="gridSystemModalLabel">Please key in the below information to add a service</h4>
+            <h4 class="modal-title" id="gridSystemModalLabel">Add a service</h4>
           </div>     
           <div class="modal-body">
             <form ng-submit="form.create()"> 
               <div class="row form-group">
-                <div class="col-md-offset-1 col-md-4">Name of Service</div>
+                <div class="col-md-offset-1 col-md-4">Service</div>
                   <div class="col-md-7">
                     <input class="col-md-12 form-control" name="name" type="text" placeholder="name of service..." ng-model="addForm.service_name">
                   </div>
               </div>
                 
               <div class="row form-group">
-                <div class="col-md-offset-1 col-md-4">Service address</div>
+                <div class="col-md-offset-1 col-md-4">Address </div>
                   <div class="col-md-7">
                     <input class="col-md-12 form-control" name="address" type="text" placeholder="central..." ng-model="addForm.service_address">
                   </div>
               </div>
 
               <div class="row form-group">
-                <div class="col-md-offset-1 col-md-4">Service phone number</div>
+                <div class="col-md-offset-1 col-md-4">Phone number</div>
                   <div class="col-md-7">
                     <input class="col-md-12 form-control" name="phone_num" type="text" placeholder="phone number" ng-model="addForm.service_phone_num">
                   </div>
