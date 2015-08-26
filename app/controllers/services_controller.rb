@@ -52,6 +52,11 @@ class ServicesController < ApplicationController
     end
   end
 
+  def service_id_thru_name(service_name)
+    @service = Service.where(service_name: service_name).select(:id);
+    render json: @service
+  end
+
   private
   def service_params
     params.require(:service).permit(:service_name, :biz_user_id, :service_address, :service_phone_num)

@@ -69,15 +69,10 @@ app.controller('StaticPagesCtrl', ['$scope', '$http', '$auth', '$location', 'Use
   $scope.logout = function(){
     $auth.signOut().then(function(response){
       console.log(response);
-
-      //user has logout, set to null
-      UserServices.user = null;
-      $scope.user = null;
-      $location.path('/')
+      $location.path('/');
     }).catch(function(response){
       console.log(response);
     });
   };
-
 }]);
 

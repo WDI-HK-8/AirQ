@@ -1,8 +1,15 @@
-app.service('UserServices', function(){
-  var x = {};
-  //initial user info is null
-  x.user = null;
-  x.serviceMessage = "UserServices Could Be Anywhere Too!"
-
-  return x;
-});
+// service runs every time it is required by a controller
+app.service('UserServices', ['$authProvider', function($auth, $scope){
+  console.log('hi, im userservices saying hi');
+  // check if user is logged in
+  var status  = $auth.validateUser().$$state.status;
+  var user_id = $auth.validateUser().$$state.value.id;
+   
+  if ($scope.authStatus == 2) {
+     $scope.loggedIn = false;  
+     console.log('you are not signed in');
+  } else {
+     $scope.loggedIn = true;
+     console.log('you are logged in');
+  }
+}]);

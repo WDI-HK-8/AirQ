@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   mount_devise_token_auth_for 'User', at: 'auth'
 
-  
-
   mount_devise_token_auth_for 'Admin', at: 'admin_auth'
 
   mount_devise_token_auth_for 'BizUser', at: 'b_auth'
@@ -24,7 +22,6 @@ Rails.application.routes.draw do
   get '/users/:id/sessions' => 'sessions#userIndex'
 
 
-
   #index services under the sun
   get '/services' => 'services#index'
   #biz_user add service
@@ -35,6 +32,8 @@ Rails.application.routes.draw do
   get '/services/:id' => 'services#show'
   #biz_user delete service
   delete '/services/:id' => 'services#destroy'
+
+  get '/services/get_id' => 'services#service_id_thru_name'
 
 
   #amend biz_user info

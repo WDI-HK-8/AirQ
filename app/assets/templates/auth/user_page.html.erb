@@ -1,14 +1,8 @@
 <navbar></navbar>
-<article class="jumbotron">
-  <h2>Hello, {{user.first_name}}!</h2>
+<article class="jumbotron text-center">
+  <h2>Hello, {{UserServices.user.first_name}}!</h2>
   Here is your account information:
-  <ul>
-      <li>Here is your first name:{{user.first_name}}</li>
-      <li>Here is your last name: {{user.last_name}}</li>
-      <li>Here is your email:     {{user.email}}</li>
-      <li>Here is your phone #:   {{user.phone_number}}</li>
-      <li>Here is your first name:{{user.first_name}}</li>
-  </ul>
+
   <h2>Let's create a session:</h2>
   <p>Select from the following fields of</p>
   <form>
@@ -29,7 +23,7 @@
       <option ng-repeat="service in services | filter: company_selection">{{service.service_name}}</option>
     </select><br>
 
-    <button type="submit" ng-submit="createSession()"></button>
+    <button type="submit" ng-click="createSession(service)">Submit</button> 
   </form>
 </article>
 
