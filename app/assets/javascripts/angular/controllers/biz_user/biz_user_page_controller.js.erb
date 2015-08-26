@@ -6,12 +6,12 @@ app.controller('BizUserCtrl', ['$scope', '$http', '$auth', '$location', function
   $scope.form     = {};
  
   $http.get(url + '/biz_users/' + $scope.authuserid + '/services').success(function(response){
-    console.log(response)
+    // console.log(response)
     $scope.services = response;
   })
 
   $http.get(url + '/biz_users/' + $scope.authuserid + '/sessions').success(function(response){
-    console.log(response)
+    // console.log(response)
     $scope.sessions = response;
   })
 
@@ -20,18 +20,21 @@ app.controller('BizUserCtrl', ['$scope', '$http', '$auth', '$location', function
     ;
 
     $http.post(url + '/services', data).success(function(response){
-     console.log(response) 
+     // console.log(response) 
     })
   }
 
-  $scope.selectedService = function(){
-    console.log($scope.services);
-  }
 
-  $scope.comparator = function(actual, expected) {
-    actual.service_name 
-    session.service_name
-  }
+
+  // $scope.selectedService = function(){
+  //   console.log($scope.services)
+
+  // }
+
+  // $scope.comparator = function(actual, expected) {
+  //   actual.service_name 
+  //   session.service_name
+  // }
 
 }]);
 

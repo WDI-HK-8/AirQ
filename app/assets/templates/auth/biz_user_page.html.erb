@@ -1,6 +1,5 @@
 <navbar></navbar>
 
-<div ng-if="loggedIn">
 <h2>Welcome to Air Q!</h2>
 <h3>Check out {{user.company_name}}'s dashboard below</h3>
 
@@ -24,11 +23,11 @@
         <table class="table table-hover">
           <tr>
             <th>Services on offer</th>
-            <th>Selection</th>
+            <!-- <th>Selection</th> -->
           </tr>
-          <tr ng-repeat="service in services" >
+          <tr ng-repeat="service in services" > 
             <td>{{service.service_name}}</td> 
-            <td><input  type="checkbox" ng-model="service.checkbox" ng-click="selectedService()" /></td> 
+            <!-- <td><input  type="checkbox" ng-model="service.checkbox" ng-click="selectedService()" /></td>  -->
           </tr>
         </table>
       </div>
@@ -51,7 +50,7 @@
             <th>Queue order time</th>
             <th>Estimated time to appointment</th>
           </tr>
-          <tr ng-repeat="session in sessions | filter: service">
+          <tr ng-repeat="session in sessions | orderBy:'service_name'">
             <td>{{session.service_name}}</td>
             <td>{{session.user_first_name | uppercase}}</td>
             <td>{{session.user_last_name | uppercase}}</td>
@@ -115,5 +114,5 @@
 
   </div>
 </div>
-</div>
+
 

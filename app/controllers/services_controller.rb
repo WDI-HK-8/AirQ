@@ -1,5 +1,5 @@
 class ServicesController < ApplicationController
-  before_action :authenticate_biz_user!
+  before_action :authenticate_biz_user!, :except => [:index, :show]
 
   def index
     @services = Service.all
