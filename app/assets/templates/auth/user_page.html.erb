@@ -28,6 +28,8 @@
     <select ng-model="service" >
       <option ng-repeat="service in services | filter: company_selection">{{service.service_name}}</option>
     </select><br>
+
+    <button type="submit" ng-submit="createSession()"></button>
   </form>
 </article>
 
