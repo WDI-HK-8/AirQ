@@ -12,6 +12,10 @@ app.config(['$routeProvider','$locationProvider', '$authProvider', function($rou
       templateUrl: "<%= asset_path('auth/user_page.html')%>",
       controller: 'UserCtrl'
     }).
+    when('/user/update', {
+      templateUrl: "<%= asset_path('auth/user_profile.html')%>",
+      controller: 'UserProfileCtrl'
+    }).
     when('/learn_more', {
       templateUrl: "<%= asset_path('static_pages/learn_more.html')%>",
       controller: 'LearnMoreCtrl',
