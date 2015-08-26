@@ -21,12 +21,12 @@
 
     <label>Select Company:</label><br>
     <select ng-model="company" ng-change="company_selection = company">
-      <option ng-repeat="service in services | filter:industry_selection">{{service.company_name}}</option>
+      <option ng-repeat="service in services | filter: industry_selection | unique: 'company_name'">{{service.company_name}}</option>
     </select><br>
 
     <label>Select Service:</label><br>
     <select ng-model="service" >
-      <option>{{service.service_name}}</option>
+      <option ng-repeat="service in services | filter: company_selection">{{service.service_name}}</option>
     </select><br>
   </form>
 </article>

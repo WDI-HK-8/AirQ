@@ -1,5 +1,5 @@
 
-var app = angular.module('AirQ', ['ngRoute', 'ng-token-auth']);
+var app = angular.module('AirQ', ['ngRoute', 'ng-token-auth', 'angular.filter']);
 
 app.config(['$routeProvider','$locationProvider', '$authProvider', function($routeProvider, $locationProvider, $authProvider) {
   // Configure Angular Routes

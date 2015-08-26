@@ -2,6 +2,7 @@ app.controller('UserCtrl', ['$scope', '$http', '$auth', '$location', 'UserServic
   $scope.user = UserServices.user;
   $scope.industry_selection = 'Select a Industry First';
   $scope.company_selection = 'Select a Industry First';
+  $scope.query = {};
   //set route path for backend
   var url = "<% ENV['URL']%>" || "http://localhost:3000";
   //call the get request when this Angular route is run
