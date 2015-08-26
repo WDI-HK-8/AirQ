@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   get '/services/:id' => 'services#show'
   #biz_user delete service
   delete '/services/:id' => 'services#destroy'
-
+  #getting the ids
   get '/services/get_id' => 'services#service_id_thru_name'
 
 

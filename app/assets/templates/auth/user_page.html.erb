@@ -1,6 +1,6 @@
 <navbar></navbar>
 <article class="jumbotron text-center">
-  <h2>Hello, {{UserServices.user.first_name}}!</h2>
+  <h2>Hello!</h2>
   Here is your account information:
 
   <h2>Let's create a session:</h2>
@@ -22,7 +22,7 @@
     <select ng-model="service" >
       <option ng-repeat="service in services | filter: company_selection">{{service.service_name}}</option>
     </select><br>
-
+    <br>
     <button type="submit" ng-click="createSession(service)">Submit</button> 
   </form>
 </article>

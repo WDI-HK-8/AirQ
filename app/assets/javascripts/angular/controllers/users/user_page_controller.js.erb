@@ -8,15 +8,15 @@ app.controller('UserCtrl', ['$scope', '$http', '$auth', '$location', function($s
   //call the get request when this Angular route is run
   $http.get(url + '/biz_users').then(function(response){
     $scope.industries = response.data;
-    // console.log(response);
+    console.log(response);
   }).catch(function(response){
     console.log(response);
   });
 
-  //call the get request for all the services for a particular industry
+  //call the get request for all the services first
   $http.get(url + '/services').then(function(response){
     $scope.services = response.data;
-    // console.log(response);
+    console.log(response.data);
   }).catch(function(response){
     console.log(response);
   });
@@ -24,11 +24,15 @@ app.controller('UserCtrl', ['$scope', '$http', '$auth', '$location', function($s
   // create the get request for creating a session
   $scope.createSession = function(service){
     var service = _.where($scope.services, {service_name: service})
-    console.log(service[0].id);
-    var data = {
-      service_id: service[0].id
-
+    var data    = {
+      service_id: service[0].id,
+      user_id:    $auth.validateUser().$$state.value.id
     };
+    $http.post(url + '/sessions', data).then(function(response){
+      console.log(response);
+    }).catch(function(response){
+      console.log(response);
+    })
 
   };
 }]);

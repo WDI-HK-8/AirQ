@@ -1,7 +1,7 @@
 app.controller('BizUserCtrl', ['$scope', '$http', '$auth', '$location', function($scope, $http, $auth, $location){
   
   var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
-  $scope.authuserid = $auth.validateUser().$$state.value.id
+  $scope.authuserid = $auth.validateUser().$$state.value.id //the id of the user
   $scope.addForm  = {};
   $scope.form     = {};
  

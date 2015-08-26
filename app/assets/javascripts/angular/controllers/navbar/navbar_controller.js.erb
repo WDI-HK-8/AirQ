@@ -1,18 +1,14 @@
 app.controller('NavbarCtrl', ['$scope', '$auth', '$location', function($scope, $auth, $location){
   
   // check if user is logged in
-   $scope.authResponse = $auth.validateUser()
+   $scope.authResponse = $auth.validateUser() //promise
    $scope.authStatus = $scope.authResponse.$$state.status
-   $scope.authuserid = $auth.validateUser().$$state.value.id
-   console.log($auth.validateUser()) //promise
-   console.log($scope.authuserid) //user id
+   $scope.authuserid = $auth.validateUser().$$state.value.id //user id
 
    if ($scope.authStatus == 2) {
      $scope.loggedIn = false;  
-     console.log($scope.loggedIn);
    } else {
-     $scope.loggedIn = true;
-     console.log($scope.loggedIn);
+     $scope.loggedIn = true;   
    }
 
    $scope.logout = function () {
@@ -20,7 +16,6 @@ app.controller('NavbarCtrl', ['$scope', '$auth', '$location', function($scope, $
       console.log(response);
 
       //user has logout, set to null
-  
       $scope.authStatus =false;
       $scope.loggedIn = false;
       $location.path('/')
