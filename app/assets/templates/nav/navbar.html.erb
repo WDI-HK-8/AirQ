@@ -8,8 +8,15 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">      
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/#/FAQ">FAQs</a></li>
-        <li><a href="/#/">Signin</a></li>
+        <li>
+          <a href="/#/FAQ">FAQs</a>
+        </li>
+        <li ng-show="loggedIn == false">
+          <a href="" id="SignIn" data-toggle="modal" data-target="#signInModal">Signin</a>
+        </li>
+        <li ng-if="loggedIn">
+          <a href="" id="SignOut" ng-click="logout()">Logout</a>
+        </li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

@@ -8,17 +8,9 @@ app.config(['$routeProvider','$locationProvider', '$authProvider', function($rou
       templateUrl: "<%= asset_path('static_pages/index.html') %>",
       controller: 'StaticPagesCtrl'
     }).
-    when('/signup', { 
-      // templateUrl: "<%= asset_path('auth/signup.html') %>",
-      controller: 'SignUpCtrl'
-    }).
-    when('/bizsignup', { 
-      // templateUrl: "<%= asset_path('auth/signup.html') %>",
-      controller: 'BizSignUpCtrl'
-    }).
-    when('/signin', {
-      // templateUrl: "<%= asset_path('auth/signin.html')%>",
-      controller: 'SignInCtrl'
+    when('/users', {
+      templateUrl: "<%= asset_path('auth/user_page.html')%>",
+      controller: 'UserCtrl'
     }).
     when('/learn_more', {
       templateUrl: "<%= asset_path('static_pages/learn_more.html')%>",
@@ -34,12 +26,12 @@ app.config(['$routeProvider','$locationProvider', '$authProvider', function($rou
   $authProvider.configure([
     {
     default: {
-      apiUrl:  "<%= ENV['URL'] || 'https://localhost:3000' %>"
+      apiUrl:  "<%= ENV['URL'] || 'http://localhost:3000' %>"
       }
     },
     {
     bizUser: {
-      apiUrl:                "<%= ENV['URL'] || 'https://localhost:3000' %>",
+      apiUrl: "<%= ENV['URL'] || 'http://localhost:3000' %>",
       proxyIf:               function() { window.isOldIE() },
       signOutUrl:            '/b_auth/sign_out',
       emailSignInPath:       '/b_auth/sign_in',

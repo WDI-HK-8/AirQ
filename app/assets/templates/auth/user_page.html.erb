@@ -1,0 +1,36 @@
+<navbar></navbar>
+<article class="jumbotron">
+  <h2>Hello, {{user.first_name}}!</h2>
+  Here is your account information:
+  <ul>
+      <li>Here is your first name:{{user.first_name}}</li>
+      <li>Here is your last name: {{user.last_name}}</li>
+      <li>Here is your email:     {{user.email}}</li>
+      <li>Here is your phone #:   {{user.phone_number}}</li>
+      <li>Here is your first name:{{user.first_name}}</li>
+  </ul>
+</article>
+
+<article>
+  <h2>Let's create a session:</h2>
+  <p>Select from the following fields</p>
+  <form>
+    <label>Select Industry:</label><br>
+    <!-- ng-model will reference this dropdown selection value -->
+    <!-- ng-change -->
+    <select ng-model="industry_selection" ng-repeat="service in services track by $index">
+      <option>{{service.industry_name}}</option>
+    </select><br>
+
+    <label>Select Company:</label><br>
+    <select ng-model="company_selection" ng-repeat="service in services | filter:industry_selection">
+      <option>{{service.company_name}}</option>
+    </select><br>
+
+    <label>Select Service:</label><br>
+    <select ng-repeat="service in services | filter:company_selection | filter:industry_selection">
+      <option>{{service.service_name}}</option>
+    </select><br>
+  </form>
+
+</article>
