@@ -5,8 +5,12 @@ app.controller('UserCtrl', ['$scope', '$http', '$auth', '$location', 'UserServic
   //set route path for backend
   var url = "<% ENV['URL']%>" || "http://localhost:3000";
   //call the get request when this Angular route is run
-  $http.get(url + '/services').success(function(response){
+  $http.get(url + '/services').then(function(response){
+    $scope.services = response.data;
+    console.log(response);
+  }).catch(function(response){
     $scope.services = response;
+    console.log(response);
   });
 
 }]);
