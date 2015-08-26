@@ -1,15 +1,15 @@
 <navbar></navbar>
 
 <h2>Welcome to Air Q!</h2>
-<h3>{{user.company_name}}'s dashboard below</h3>
+<h3>{{user.company_name}}'s service history </h3>
 
 <div class="container">
   <div class="row">
     <ul class="list-unstyled col-xs-12">
-      <li class="col-xs-3"><a>Dashboard</a></li>
+      <li class="col-xs-3"><a href ng-click="redirectHome()">Dashboard</a></li>
       <li class="col-xs-3"><a href data-toggle="modal" data-target="#addSModal">Add a service</a></li>
       <li class="col-xs-3"><a href ng-click="redirectHistory()">Service history</a></li>
-      <li class="col-xs-3"><a href="#">Business Profile</a></li>
+      <li class="col-xs-3"><a href ng-click="redirectProfile()">Business Profile</a></li>
 
     </ul>
   </div>
@@ -42,22 +42,24 @@
       <div class="table-responsive">
         <table class="table table-hover">
           <tr>
+            <th>Date</th>
+            <th>Time of queue</th>
+            <th>Waited time</th>
             <th>Service Name</th>
             <th>First_Name</th>
             <th>Last_Name</th>
             <th>Email</th>
             <th>Phone Number</th>
-            <th>Queue order time</th>
-            <th>Estimated time to appointment</th>
           </tr>
-          <tr ng-repeat="session in sessions | orderBy:'service_name'">
+          <tr ng-repeat="session in sessions | orderBy:'updated_at'">
+            <td>{{session.updated_at | date:"'MMM d, y"}}</td>
+            <td>{{session.created_at | date:"medium"}}</td>
+            <td>{{session.created_at | date:"m"}} mins</td>
             <td>{{session.service_name}}</td>
             <td>{{session.user_first_name | uppercase}}</td>
             <td>{{session.user_last_name | uppercase}}</td>
             <td>{{session.user_email}}</td>
-            <td>{{session.user_phone_num}}</td>
-            <td>{{session.updated_at | date:"MM/dd/yyyy 'at' h:mma"}}</td>
-            <td>{{session.updated_at | date:"MM/dd/yyyy 'at' h:mma"}}</td>
+            <td>{{session.user_phone_number}}</td>
           </tr>
         </table>
       </div>
@@ -114,5 +116,6 @@
 
   </div>
 </div>
+
 
 

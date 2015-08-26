@@ -48,12 +48,6 @@ class SessionsController < ApplicationController
     @serviceSessions = Session.where(service_id: myService.id, is_completed?: false)
   end
 
-  #index of completed sessions under biz_user
-  def completedServiceIndex
-    myService = Service.find_by_id(params[:id])
-    @completedServiceSessions = Session.where(service_id: myService.id, is_completed?: true)
-  end
-
 
   private
   def session_params

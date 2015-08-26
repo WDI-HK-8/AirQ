@@ -1,4 +1,4 @@
-app.controller('BizUserCtrl', ['$scope', '$http', '$auth', '$location', function($scope, $http, $auth, $location){
+app.controller('BizUserHistoryCtrl', ['$scope', '$http', '$auth', '$location', function($scope, $http, $auth, $location){
   
   var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
   $scope.authuserid = $auth.validateUser().$$state.value.id
@@ -10,39 +10,27 @@ app.controller('BizUserCtrl', ['$scope', '$http', '$auth', '$location', function
     $scope.services = response;
   })
 
-  $http.get(url + '/biz_users/' + $scope.authuserid + '/sessions').success(function(response){
+  $http.get(url + '/biz_users/' + $scope.authuserid + '/sessions/completed').success(function(response){
     // console.log(response)
     $scope.sessions = response;
   })
 
   $scope.form.create = function(){
     var data = $scope.addForm
-    ;
-
+    
     $http.post(url + '/services', data).success(function(response){
      // console.log(response) 
     })
   }
 
 // redirect functions
-
-  $scope.redirectHistory = function(){
-    $location.path('/biz_users/history');
+  $scope.redirectHome = function(){
+    $location.path('/biz_users');
   }
 
   $scope.redirectProfile = function(){
     $location.path('/biz_users/profile');
   }
 
-  // $scope.selectedService = function(){
-  //   console.log($scope.services)
-
-  // }
-
-  // $scope.comparator = function(actual, expected) {
-  //   actual.service_name 
-  //   session.service_name
-  // }
 
 }]);
-
