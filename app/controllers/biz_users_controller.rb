@@ -17,6 +17,13 @@ class BizUsersController < ApplicationController
     end
   end
 
+  def industries
+    @industries = BizUser.all.pluck(:industry_name).uniq
+    if @industries
+      render json: @industries
+    end
+  end
+
   private
 
   def bizuser_params

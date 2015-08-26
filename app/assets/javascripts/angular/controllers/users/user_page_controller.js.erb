@@ -1,16 +1,22 @@
 app.controller('UserCtrl', ['$scope', '$http', '$auth', '$location', 'UserServices', function($scope, $http, $auth, $location, UserServices){
   $scope.user = UserServices.user;
-  $scope.industry_selection = null;
-  $scope.company_selection = null;
+  $scope.industry_selection = 'Select a Industry First';
+  $scope.company_selection = 'Select a Industry First';
   //set route path for backend
   var url = "<% ENV['URL']%>" || "http://localhost:3000";
   //call the get request when this Angular route is run
+  $http.get(url + '/biz_users').then(function(response){
+    $scope.industries = response.data;
+    console.log(response);
+  }).catch(function(response){
+    console.log(response);
+  });
+
+  //call the get request for all the services for a particular industry
   $http.get(url + '/services').then(function(response){
     $scope.services = response.data;
     console.log(response);
   }).catch(function(response){
-    $scope.services = response;
     console.log(response);
   });
-
 }]);

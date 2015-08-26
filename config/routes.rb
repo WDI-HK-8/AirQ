@@ -45,7 +45,8 @@ Rails.application.routes.draw do
   # get completed session under biz_user
   get '/services/:id/sessions/completed' => 'sessions#completedServiceIndex'
 
-
+  # get biz_user industries
+  get '/biz_users' => 'biz_users#industries'
 
   #CRUD on sessions
   # user post session; joins a queue

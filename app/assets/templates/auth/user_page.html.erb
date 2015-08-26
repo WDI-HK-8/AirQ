@@ -15,19 +15,19 @@
     <label>Select Industry:</label><br>
     <!-- ng-model will reference this dropdown selection value -->
     <!-- ng-change -->
-    <select ng-model="industry_selection">
-      <option ng-repeat="service in services track by $index">{{service.industry_name}}</option>
+    <select ng-model="industry" ng-change="industry_selection = industry">
+      <option ng-repeat="industry in industries track by $index">{{industry}}</option>
     </select><br>
 
     <label>Select Company:</label><br>
-    <!-- <select ng-model="company_selection" ng-repeat="service in services | filter:industry_selection">
-      <option>{{service.company_name}}</option>
-    </select><br> -->
+    <select ng-model="company" ng-change="company_selection = company">
+      <option ng-repeat="service in services | filter:industry_selection">{{service.company_name}}</option>
+    </select><br>
 
     <label>Select Service:</label><br>
-    <!-- <select ng-repeat="service in services | filter:company_selection | filter:industry_selection">
+    <select ng-model="service" >
       <option>{{service.service_name}}</option>
-    </select><br> -->
+    </select><br>
   </form>
 </article>
 
