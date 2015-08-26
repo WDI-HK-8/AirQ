@@ -40,7 +40,8 @@ app.controller('StaticPagesCtrl', ['$scope', '$http', '$auth', '$location', 'Use
       $auth.submitLogin($scope.loginForm, {config: 'bizUser'})
       .then(function(response){
         console.log(response)
-        $location.path('/biz_user');
+        UserServices.user = response;
+        $location.path('/biz_users');
       })
       .catch(function(response){
         console.log(response)

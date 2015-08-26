@@ -17,11 +17,17 @@ class BizUsersController < ApplicationController
     end
   end
 
+
   def industries
     @industries = BizUser.all.pluck(:industry_name).uniq
     if @industries
       render json: @industries
     end
+
+  def sessions
+    myBizUser = BizUser.find_by_id(params[:id])
+    @bizusersessions = myBizUser.sessions
+    
   end
 
   private

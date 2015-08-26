@@ -1,0 +1,31 @@
+app.controller('BizUserCtrl', ['$scope', '$http', '$auth', '$location', 'UserServices', function($scope, $http, $auth, $location, UserServices){
+  
+  var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
+  $scope.user = UserServices.user;
+  $scope.addForm = {};
+  $scope.form = {};
+ 
+
+  $http.get(url + '/biz_users/' + UserServices.user.id + '/services').success(function(response){
+    console.log(response)
+    $scope.services = response;
+  })
+
+  $http.get(url + '/biz_users/' + UserServices.user.id + '/sessions').success(function(response){
+    console.log(response)
+    $scope.sessions = response;
+  })
+
+  $scope.form.create = function(){
+    var data = {
+      post: $scope.addForm
+    };
+
+    $http.post(url + '/services', data).success(function(response){
+     console.log(response) 
+    })
+  }
+
+
+}]);
+

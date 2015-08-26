@@ -1,0 +1,117 @@
+<navbar></navbar>
+
+<h2>Welcome to Air Q!</h2>
+<h3>Check out {{user.company_name}}'s dashboard below</h3>
+
+<div class="container">
+  <div class="row">
+    <ul class="list-unstyled col-xs-12">
+      <li class="col-xs-3"><a href="#">Dashboard</a></li>
+      <li class="col-xs-3"><a href data-toggle="modal" data-target="#addSModal">Add a service</a></li>
+      <li class="col-xs-3"><a href="#">Service history</a></li>
+      <li class="col-xs-3"><a href="#">Business Profile</a></li>
+
+    </ul>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+  <!-- side bar area -->
+    <section class="sidebar col-xs-3">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <tr>
+            <th>Service Name</th>
+            <th>Selection</th>
+          </tr>
+          <tr ng-repeat="service in services" >
+            <td>{{service.service_name}}</td> 
+            <td><input  type="checkbox" ng-model="services" ng-true-value=service.service_name  data-ng-false-value=''/></td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
+  <!-- main content area -->
+    
+    <section class="main-content col-xs-9">
+      <section>
+      Search:<input ng-model="query" type="text"/>
+      </section>
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <tr>
+            <th>Service Name</th>
+            <th>Customer First_Name</th>
+            <th>Customer Last_Name</th>
+            <th>Customer Email</th>
+            <th>Customer Phone Number</th>
+            <th>Queue order time</th>
+            <th>Estimated time to appointment</th>
+          </tr>
+          <tr ng-repeat="session in sessions | filter:query">
+            <td>{{session.service_name}}</td>
+            <td>{{session.user_first_name | uppercase}}</td>
+            <td>{{session.user_last_name | uppercase}}</td>
+            <td>{{session.user_email}}</td>
+            <td>{{session.user_phone_num}}</td>
+            <td>{{session.updated_at | date:"MM/dd/yyyy 'at' h:mma"}}</td>
+            <td>{{session.updated_at}}</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- modal for adding service -->
+    <div class="modal fade" id="addSModal" role="dialog" aria-labelledby="gridSystemModalLabel">
+      <div class="modal-dialog" role="form">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="gridSystemModalLabel">Please key in the below information to add a service</h4>
+          </div>     
+          <div class="modal-body">
+            <form ng-submit="form.create()"> 
+              <div class="row form-group">
+                <div class="col-md-offset-1 col-md-4">Name of Service</div>
+                  <div class="col-md-7">
+                    <input class="col-md-12 form-control" name="name" type="text" placeholder="name of service..." ng-model="addForm.service_name">
+                  </div>
+              </div>
+                
+              <div class="row form-group">
+                <div class="col-md-offset-1 col-md-4">Service address</div>
+                  <div class="col-md-7">
+                    <input class="col-md-12 form-control" name="address" type="text" placeholder="central..." ng-model="addForm.service_address">
+                  </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-offset-1 col-md-4">Service phone number</div>
+                  <div class="col-md-7">
+                    <input class="col-md-12 form-control" name="phone_num" type="text" placeholder="phone number" ng-model="addForm.service_phone_num">
+                  </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-offset-1 col-md-4">Business ID</div>
+                  <div class="col-md-7">
+                    <p ng-model="addForm.biz_user_id">{{user.id}}</p>
+                  </div>
+              </div>
+
+              <div class="row form-group">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#addSModal">Submit</button>  
+              </div>
+
+            </form>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+  </div>
+</div>
+

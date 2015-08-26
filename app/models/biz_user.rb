@@ -5,5 +5,4 @@ class BizUser < ActiveRecord::Base
           :omniauthable
   include DeviseTokenAuth::Concerns::User
   has_many :services
-  has_many :sessions, through: :services
-end
+  has_many :sessions, through: :services  

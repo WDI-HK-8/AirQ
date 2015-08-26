@@ -1,11 +1,12 @@
 class ServicesController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     @services = Service.all
   end
 
   def create
-    @service = Service.new(service_params)
+    @service = current_user.services.new(service_params)
 
     if @service.save
 
@@ -29,6 +30,12 @@ class ServicesController < ApplicationController
     if @service.nil?
       render json: {message: "400 Bad Request"}, status: :bad_request
     end
+  end
+
+  #show case all the services under that biz user
+  def bizIndex
+    myBizUser = BizUser.find_by_id(params[:id])
+    @bizservices = Service.where(biz_user_id: myBizUser.id)    
   end
 
   def destroy

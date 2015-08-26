@@ -36,10 +36,13 @@ Rails.application.routes.draw do
   #biz_user delete service
   delete '/services/:id' => 'services#destroy'
 
+
   #amend biz_user info
   put '/biz_users/:id' => 'biz_users#update'
   # get biz_user info
   get '/biz_users/:id' => 'biz_users#show'
+  # get services under each biz_user
+  get '/biz_users/:id/services' => 'services#bizIndex'
   # get sessions under biz_user
   get '/services/:id/sessions' => 'sessions#serviceIndex'
   # get completed session under biz_user
@@ -47,6 +50,10 @@ Rails.application.routes.draw do
 
   # get biz_user industries
   get '/biz_users' => 'biz_users#industries'
+
+  # get all sessions under biz_user
+  get '/biz_users/:id/sessions' => 'biz_users#sessions'
+
 
   #CRUD on sessions
   # user post session; joins a queue

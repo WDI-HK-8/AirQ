@@ -21,6 +21,10 @@ app.config(['$routeProvider','$locationProvider', '$authProvider', function($rou
       templateUrl: "<%= asset_path('static_pages/faq.html')%>",
       controller: 'FaqCtrl'
       // css: "<%= asset_path('stylesheets/learn_more.css')%>"
+    }).
+    when('/biz_users', {
+      templateUrl: "<%= asset_path('auth/biz_user_page.html')%>",
+      controller: 'BizUserCtrl'
     })
 
   $authProvider.configure([

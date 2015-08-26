@@ -1,3 +1,4 @@
+
 companies  = [
   {
     name: 'HSBC',
@@ -57,6 +58,7 @@ users  = [
   }
 ];
 
+
 users.each {|user|
   user = User.create(
     first_name:             user[:first_name], 
@@ -103,7 +105,7 @@ sevices.each {|service|
 sessions  = [
   {
     user_id: 1,
-    service_id: 1,
+    service_id: 2,
     is_completed?: false
   },
   {
@@ -128,6 +130,7 @@ sessions  = [
   }
 ];  
 
+
 sessions.each {|session|
   session = Session.create(
     user_id:            session[:user_id], 
@@ -135,3 +138,4 @@ sessions.each {|session|
     is_completed?:      session[:is_completed?], 
   );
 }
+
