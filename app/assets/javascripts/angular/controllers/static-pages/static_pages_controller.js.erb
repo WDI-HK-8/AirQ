@@ -1,6 +1,21 @@
-app.controller('StaticPagesCtrl', ['$scope', '$http', '$auth', '$location', 'UserServices', function($scope, $http, $auth, $location, UserServices){
+app.controller('StaticPagesCtrl', ['$scope', '$http', '$auth', '$location', function($scope, $http, $auth, $location){
 
   $scope.loginForm = {};
+
+  $scope.authResponse = $auth.validateUser()
+   $scope.authStatus = $scope.authResponse.$$state.status
+   console.log($auth.validateUser())
+   console.log($scope.authStatus)
+
+   if ($scope.authStatus == 2) {
+     $scope.loggedIn = false;  
+     console.log('you are not signed in');
+     console.log($scope.loggedIn);
+   } else {
+     $scope.loggedIn = true;
+     console.log('you are logged in');
+     console.log($scope.loggedIn);
+   }
 
   // user sign up; auto login on successful signup.
   $scope.signup = function(){
@@ -9,7 +24,7 @@ app.controller('StaticPagesCtrl', ['$scope', '$http', '$auth', '$location', 'Use
       console.log(response);
 
       //stores user data on successful signup
-      UserServices.user = response.data.data;
+      
       $location.path('/');
       alert("Successful signup!");
     })
@@ -27,9 +42,9 @@ app.controller('StaticPagesCtrl', ['$scope', '$http', '$auth', '$location', 'Use
       .then(function(response){
         console.log(response);
         alert("Successful signin!"); 
-
+        $scope.loggedIn = true;
         //store user data on successful login
-        UserServices.user = response;
+        
         $location.path('/users');
       })
       .catch(function(response){
@@ -41,8 +56,9 @@ app.controller('StaticPagesCtrl', ['$scope', '$http', '$auth', '$location', 'Use
       .then(function(response){
         console.log(response)
         
-        UserServices.user = response;
+        
         $location.path('/biz_users');
+        $scope.loggedIn = true;
 
       })
       .catch(function(response){
@@ -71,8 +87,7 @@ app.controller('StaticPagesCtrl', ['$scope', '$http', '$auth', '$location', 'Use
       console.log(response);
 
       //user has logout, set to null
-      UserServices.user = null;
-      $scope.user = null;
+      
       $location.path('/')
     }).catch(function(response){
       console.log(response);

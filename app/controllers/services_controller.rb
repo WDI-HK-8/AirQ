@@ -1,12 +1,12 @@
 class ServicesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_biz_user!
 
   def index
     @services = Service.all
   end
 
   def create
-    @service = current_user.services.new(service_params)
+    @service = current_biz_user.services.new(service_params)
 
     if @service.save
 
@@ -54,7 +54,7 @@ class ServicesController < ApplicationController
 
   private
   def service_params
-    params.require(:service).permit(:service_name, :biz_user_id, :service_address, :service_phone_num)
+    params.permit(:service_name, :service_address, :service_phone_num)
   end
 
 end
