@@ -1,20 +1,31 @@
-app.controller('NavbarCtrl', ['$scope', '$auth', '$location', 'UserServices', function($scope, $auth, $location, UserServices){
+app.controller('NavbarCtrl', ['$scope', '$auth', '$location', function($scope, $auth, $location){
   
-  $scope.user = UserServices.user;
+  // check if user is logged in
+   $scope.authResponse = $auth.validateUser()
+   $scope.authStatus = $scope.authResponse.$$state.status
+   $scope.authuserid = $auth.validateUser().$$state.value.id
+   console.log($auth.validateUser()) //promise
+   console.log($scope.authuserid) //user id
 
-  $scope.logout = function () {
+   if ($scope.authStatus == 2) {
+     $scope.loggedIn = false;  
+     console.log($scope.loggedIn);
+   } else {
+     $scope.loggedIn = true;
+     console.log($scope.loggedIn);
+   }
+
+   $scope.logout = function () {
     $auth.signOut().then(function(response) {
       console.log(response);
 
-      $scope.user = false;
-      $scope.authStatus = false;
-
+      //user has logout, set to null
+  
+      $scope.authStatus =false;
+      $scope.loggedIn = false;
       $location.path('/')
     }).catch(function(response) {
       console.log(response);
     });
   };
-
-  
-
 }]);

@@ -1,5 +1,5 @@
-app.controller('UserCtrl', ['$scope', '$http', '$auth', '$location', 'UserServices', function($scope, $http, $auth, $location, UserServices){
-  $scope.user = UserServices.user;
+app.controller('UserCtrl', ['$scope', '$http', '$auth', '$location', function($scope, $http, $auth, $location){
+  
   $scope.industry_selection = 'Select a Industry First';
   $scope.company_selection = 'Select a Industry First';
   $scope.query = {};
