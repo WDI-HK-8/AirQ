@@ -9,28 +9,30 @@
       <li>Here is your phone #:   {{user.phone_number}}</li>
       <li>Here is your first name:{{user.first_name}}</li>
   </ul>
-</article>
-
-<article>
   <h2>Let's create a session:</h2>
-  <p>Select from the following fields</p>
+  <p>Select from the following fields of</p>
   <form>
     <label>Select Industry:</label><br>
     <!-- ng-model will reference this dropdown selection value -->
     <!-- ng-change -->
-    <select ng-model="industry_selection" ng-repeat="service in services track by $index">
-      <option>{{service.industry_name}}</option>
+    <select ng-model="industry" ng-change="industry_selection = industry">
+      <option ng-repeat="industry in industries track by $index">{{industry}}</option>
     </select><br>
 
     <label>Select Company:</label><br>
-    <select ng-model="company_selection" ng-repeat="service in services | filter:industry_selection">
-      <option>{{service.company_name}}</option>
+    <select ng-model="company" ng-change="company_selection = company">
+      <option ng-repeat="service in services | filter: industry_selection | unique: 'company_name'">{{service.company_name}}</option>
     </select><br>
 
     <label>Select Service:</label><br>
-    <select ng-repeat="service in services | filter:company_selection | filter:industry_selection">
-      <option>{{service.service_name}}</option>
+    <select ng-model="service" >
+      <option ng-repeat="service in services | filter: company_selection">{{service.service_name}}</option>
     </select><br>
+
+    <button type="submit" ng-submit="createSession()"></button>
   </form>
+</article>
+
+<article>
 
 </article>

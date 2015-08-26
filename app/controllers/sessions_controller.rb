@@ -55,7 +55,6 @@ class SessionsController < ApplicationController
   end
 
 
-
   private
   def session_params
     params.require(:session).permit(:user_id, :service_id, :is_completed?)

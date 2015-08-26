@@ -1,11 +1,12 @@
 class ServicesController < ApplicationController
+  before_action :authenticate_biz_user!, :except => [:index, :show]
 
   def index
     @services = Service.all
   end
 
   def create
-    @service = Service.new(service_params)
+    @service = current_biz_user.services.new(service_params)
 
     if @service.save
 
@@ -31,6 +32,12 @@ class ServicesController < ApplicationController
     end
   end
 
+  #show case all the services under that biz user
+  def bizIndex
+    myBizUser = BizUser.find_by_id(params[:id])
+    @bizservices = Service.where(biz_user_id: myBizUser.id)    
+  end
+
   def destroy
     @service =Service.find_by_id(params[:id])
 
@@ -47,7 +54,7 @@ class ServicesController < ApplicationController
 
   private
   def service_params
-    params.require(:service).permit(:service_name, :biz_user_id, :service_address, :service_phone_num)
+    params.permit(:service_name, :service_address, :service_phone_num)
   end
 
 end

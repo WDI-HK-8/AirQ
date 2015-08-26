@@ -1,0 +1,40 @@
+app.controller('BizUserCtrl', ['$scope', '$http', '$auth', '$location', function($scope, $http, $auth, $location){
+  
+  var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
+  $scope.authuserid = $auth.validateUser().$$state.value.id
+  $scope.addForm  = {};
+  $scope.form     = {};
+ 
+  $http.get(url + '/biz_users/' + $scope.authuserid + '/services').success(function(response){
+    // console.log(response)
+    $scope.services = response;
+  })
+
+  $http.get(url + '/biz_users/' + $scope.authuserid + '/sessions').success(function(response){
+    // console.log(response)
+    $scope.sessions = response;
+  })
+
+  $scope.form.create = function(){
+    var data = $scope.addForm
+    ;
+
+    $http.post(url + '/services', data).success(function(response){
+     // console.log(response) 
+    })
+  }
+
+
+
+  // $scope.selectedService = function(){
+  //   console.log($scope.services)
+
+  // }
+
+  // $scope.comparator = function(actual, expected) {
+  //   actual.service_name 
+  //   session.service_name
+  // }
+
+}]);
+
