@@ -1,15 +1,22 @@
-app.controller('StaticPagesCtrl', ['$scope', '$http', '$auth', '$location', 'UserServices', function($scope, $http, $auth, $location, UserServices){
+app.controller('StaticPagesCtrl', ['$scope', '$http', '$auth', '$location', function($scope, $http, $auth, $location){
 
   $scope.loginForm = {};
+
+  $scope.authResponse = $auth.validateUser() //promise object
+  $scope.authStatus = $scope.authResponse.$$state.status  
+
+   if ($scope.authStatus == 2) {
+     $scope.loggedIn = false;  
+     console.log('----->','you are not signed in');
+   } else {
+     $scope.loggedIn = true;
+     console.log('----->','you are logged in');
+   }
 
   // user sign up; auto login on successful signup.
   $scope.signup = function(){
     $auth.submitRegistration($scope.registrationForm, {config: 'default'})
     .then(function (response){
-      console.log(response);
-
-      //stores user data on successful signup
-      UserServices.user = response.data.data;
       $location.path('/');
       alert("Successful signup!");
     })
@@ -21,15 +28,14 @@ app.controller('StaticPagesCtrl', ['$scope', '$http', '$auth', '$location', 'Use
 
   // user log in; 
   $scope.signin = function(){
-    console.log($scope.usertype)
     if ($scope.usertype == 'User'){
       $auth.submitLogin($scope.loginForm, {config: 'default'})
       .then(function(response){
-        console.log(response);
-        alert("Successful signin!"); 
 
+        alert("Successful signin!"); 
+        $scope.loggedIn = true;
         //store user data on successful login
-        UserServices.user = response;
+        
         $location.path('/users');
       })
       .catch(function(response){
@@ -39,8 +45,10 @@ app.controller('StaticPagesCtrl', ['$scope', '$http', '$auth', '$location', 'Use
 
       $auth.submitLogin($scope.loginForm, {config: 'bizUser'})
       .then(function(response){
-        console.log(response)
-        $location.path('/biz_user');
+
+        $location.path('/biz_users');
+        $scope.loggedIn = true;
+
       })
       .catch(function(response){
         console.log(response)
@@ -52,7 +60,6 @@ app.controller('StaticPagesCtrl', ['$scope', '$http', '$auth', '$location', 'Use
   $scope.bizsignup = function(){
     $auth.submitRegistration($scope.registrationForm, {config: 'bizUser'})
     .then(function (response){
-      console.log(response);
       $location.path('/');
       alert("Successful signup!") 
     //handle failure
@@ -65,16 +72,9 @@ app.controller('StaticPagesCtrl', ['$scope', '$http', '$auth', '$location', 'Use
   //users logout
   $scope.logout = function(){
     $auth.signOut().then(function(response){
-      console.log(response);
-
-      //user has logout, set to null
-      UserServices.user = null;
-      $scope.user = null;
-      $location.path('/')
+      $location.path('/');
     }).catch(function(response){
-      console.log(response);
     });
   };
-
 }]);
 
