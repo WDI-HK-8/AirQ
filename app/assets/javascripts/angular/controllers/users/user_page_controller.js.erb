@@ -21,14 +21,6 @@ app.controller('UserCtrl', ['$scope', '$http', '$auth', '$location', function($s
     console.log(response);
   });
 
-  // //call the get request for all the services first
-  // $http.get(url + '/users/'+user_id+'/sessions').then(function(response){
-
-    
-  // }).catch(function(response){
-  //   console.log(response);
-  // });
-
   // on page loads, the sessions wait time is calculated
   $http.get(url + '/users/' + user_id + '/sessions').success(function(response){
     //an array of objects including a service_id
