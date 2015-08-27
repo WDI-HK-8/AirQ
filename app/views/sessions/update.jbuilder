@@ -4,6 +4,6 @@ json.service_name @session.service.service_name
 json.user_id @session.user.id
 json.user_first_name @session.user.first_name
 json.user_last_name @session.user.last_name
-json.is_completed? @session.is_completed?
+json.is_completed @session.is_completed
 json.created_at @session.created_at
 json.updated_at @session.updated_at

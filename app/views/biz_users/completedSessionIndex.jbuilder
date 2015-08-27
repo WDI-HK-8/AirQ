@@ -7,7 +7,7 @@ json.array! @completedServiceSessions do |completedServiceSession|
   json.user_last_name             completedServiceSession.user.last_name
   json.user_email                 completedServiceSession.user.email
   json.user_phone_number          completedServiceSession.user.phone_number
-  json.is_completed?              completedServiceSession.is_completed?
+  json.is_completed               completedServiceSession.is_completed
   json.created_at                 completedServiceSession.created_at
   json.updated_at                 completedServiceSession.updated_at
 end
