@@ -19,7 +19,7 @@ body{
   width: 100vw;
   height: 100%;
   top: 50px;
-  background-color: #241D16;
+  /*background-color: #241D16;*/
 }
 
 .navbar-right{
@@ -46,4 +46,31 @@ img.col-md-12{
 
 .row{
   margin: 0px;
+}
+
+#queue_list{
+  overflow: auto;
+  height: 100%;
+}
+
+#queue_finder{
+  height: 100%;
+}
+
+h2.ng-binding{
+  margin-bottom: 30px;
+}
+
+#session_table{
+  margin-bottom: 5px;
+  position: inherit;
+  width:100px;
+  height:200px;
+  border-right: 3px solid orange;
+  margin-right: 5px;
+  float: left;
+}
+
+#submit_btn{
+  margin-top: 30px;
 }

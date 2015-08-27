@@ -1,5 +1,5 @@
 
-var app = angular.module('AirQ', ['ngRoute', 'ng-token-auth']);
+var app = angular.module('AirQ', ['ngRoute', 'ng-token-auth', 'angular.filter']);
 
 app.config(['$routeProvider','$locationProvider', '$authProvider', function($routeProvider, $locationProvider, $authProvider) {
   // Configure Angular Routes
@@ -12,6 +12,10 @@ app.config(['$routeProvider','$locationProvider', '$authProvider', function($rou
       templateUrl: "<%= asset_path('auth/user_page.html')%>",
       controller: 'UserCtrl'
     }).
+    when('/user/update', {
+      templateUrl: "<%= asset_path('auth/user_profile.html')%>",
+      controller: 'UserProfileCtrl'
+    }).
     when('/learn_more', {
       templateUrl: "<%= asset_path('static_pages/learn_more.html')%>",
       controller: 'LearnMoreCtrl',
@@ -21,6 +25,18 @@ app.config(['$routeProvider','$locationProvider', '$authProvider', function($rou
       templateUrl: "<%= asset_path('static_pages/faq.html')%>",
       controller: 'FaqCtrl'
       // css: "<%= asset_path('stylesheets/learn_more.css')%>"
+    }).
+    when('/biz_users', {
+      templateUrl: "<%= asset_path('auth/biz_user_page.html')%>",
+      controller: 'BizUserCtrl'
+    }).
+    when('/biz_users/history', {
+      templateUrl: "<%= asset_path('auth/biz_user_history_page.html')%>",
+      controller: 'BizUserHistoryCtrl'
+    }).
+    when('/biz_users/profile', {
+      templateUrl: "<%= asset_path('auth/biz_user_profile_page.html')%>",
+      controller: 'BizUserProfileCtrl'
     })
 
   $authProvider.configure([

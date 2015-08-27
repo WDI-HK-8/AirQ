@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   mount_devise_token_auth_for 'User', at: 'auth'
 
-  
-
   mount_devise_token_auth_for 'Admin', at: 'admin_auth'
 
   mount_devise_token_auth_for 'BizUser', at: 'b_auth'
@@ -24,7 +22,6 @@ Rails.application.routes.draw do
   get '/users/:id/sessions' => 'sessions#userIndex'
 
 
-
   #index services under the sun
   get '/services' => 'services#index'
   #biz_user add service
@@ -32,19 +29,31 @@ Rails.application.routes.draw do
   #biz_user update service name
   put '/services/:id' => 'services#update'
   #biz_user selects one service
-  get '/services/:id' => 'services#show'
+  get '/services/:id' => 'services#showSessions'
+  #biz_user selects one service with sessions completed
+  get '/services/:id/completed' => 'services#showCompletedSessions'
   #biz_user delete service
   delete '/services/:id' => 'services#destroy'
+  #getting the ids
+  get '/services/get_id' => 'services#service_id_thru_name'
+
 
   #amend biz_user info
   put '/biz_users/:id' => 'biz_users#update'
   # get biz_user info
   get '/biz_users/:id' => 'biz_users#show'
+  # get services under each biz_user
+  get '/biz_users/:id/services' => 'services#bizIndex'
   # get sessions under biz_user
   get '/services/:id/sessions' => 'sessions#serviceIndex'
-  # get completed session under biz_user
-  get '/services/:id/sessions/completed' => 'sessions#completedServiceIndex'
 
+  # get biz_user industries
+  get '/biz_users' => 'biz_users#industries'
+
+  # get all sessions under biz_user
+  get '/biz_users/:id/sessions' => 'biz_users#sessions'
+  # get completed session under biz_user
+  get '/biz_users/:id/sessions/completed' => 'biz_users#completedSessionIndex'
 
 
   #CRUD on sessions

@@ -5,4 +5,5 @@ class User < ActiveRecord::Base
           :omniauthable
   include DeviseTokenAuth::Concerns::User
   has_many :sessions
+  has_many :services, through: :sessions
 end

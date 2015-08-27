@@ -2,7 +2,6 @@ class SessionsController < ApplicationController
 
   def create
     @session = Session.new(session_params)
-
     if @session.save
       
     else
@@ -47,13 +46,6 @@ class SessionsController < ApplicationController
     myService = Service.find_by_id(params[:id])
     @serviceSessions = Session.where(service_id: myService.id, is_completed?: false)
   end
-
-  #index of completed sessions under biz_user
-  def completedServiceIndex
-    myService = Service.find_by_id(params[:id])
-    @completedServiceSessions = Session.where(service_id: myService.id, is_completed?: true)
-  end
-
 
 
   private

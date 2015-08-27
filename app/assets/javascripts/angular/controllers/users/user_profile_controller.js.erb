@@ -1,0 +1,12 @@
+app.controller('UserProfileCtrl', ['$scope', '$http', '$auth', '$location', function($scope, $http, $auth, $location){
+  $scope.user_info = $auth.validateUser().$$state.value;
+
+  // put request to change profile information
+  var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
+  $scope.updateUserProfile = function(){
+    $http.put(url + '/users/' + $scope.user_info.id, $scope.UpdateUserForm).then(function(response){
+      console.log(response);
+      $location.path('/user/update');
+    });
+  }
+}]);
