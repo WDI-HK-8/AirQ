@@ -1,6 +1,7 @@
 app.controller('UserCtrl', ['$scope', '$http', '$auth', '$location', function($scope, $http, $auth, $location){
   var service = 0;
   var user_id = $auth.validateUser().$$state.value.id;
+  console.log('--->', user_id);
   $scope.industry_selection = 'Select a Industry First';
   $scope.company_selection = 'Select a Industry First';
   $scope.query = {};
@@ -20,37 +21,37 @@ app.controller('UserCtrl', ['$scope', '$http', '$auth', '$location', function($s
     console.log(response);
   });
 
-  //call the get request for all the services first
-  $http.get(url + '/users/'+user_id+'/sessions').then(function(response){
-    $scope.sessions = response.data;
-    $scope.sessions_count = response.data.length;
-  }).catch(function(response){
-    console.log(response);
-  });
+  // //call the get request for all the services first
+  // $http.get(url + '/users/'+user_id+'/sessions').then(function(response){
+
+    
+  // }).catch(function(response){
+  //   console.log(response);
+  // });
 
   // on page loads, the sessions wait time is calculated
   $http.get(url + '/users/' + user_id + '/sessions').success(function(response){
     //an array of objects including a service_id
-    // console.log('---->', response);
-    //each session for a user
+    $scope.sessions = response; //each session for a user
     for (var i = 0; i < response.length; i++) {
       var userSessionServiceId = response[i].service_id;
       //get sessions of all the services of the user's sessions
+      var sumWaitTime = 0;
       $http.get(url + '/services/' + userSessionServiceId + '/sessions').success(function(response){
         
-        var sumWaitTime = 0;
         //for each session of each service that the user is signed up in...
         for(var k = 0; k < response.length; k++){
-          console.log('Each session-->',response[k]);
+          // console.log('Each session-->',response[k]);
           // console.log('updated at--->', new Date(response[k].updated_at));
           // console.log('updated at--->', new Date(response[k].created_at));
           var waitTimeMM = new Date(response[k].updated_at) - new Date(response[k].created_at);
           var waitTimeMinutes = (waitTimeMM/1000)/60;
           sumWaitTime += waitTimeMinutes;
         }
-        console.log(sumWaitTime/response.length + 'avg. wait time minutes'); //NOW SUM UP THE TIME OF ALL THE WAIT TIMES, DIVIDE BY EACH SERVICE'S SESSION LENGTH COUNT
-
+        //add wait time property for all the sessions of a service
       });
+      console.log(sumWaitTime);
+      response[i].estWaitTime = (sumWaitTime/response.length + 'avg. wait time minutes');
     };
 
 

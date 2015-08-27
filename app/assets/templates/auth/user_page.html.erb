@@ -30,25 +30,29 @@
 <article class="jumbotron col-xs-8" id="queue_list">
   <h2>You are currently waiting for {{sessions_count}} queues</h2>
   <table id="session_table" class=" table table-bordered table-striped" ng-repeat="session in sessions">
-    <tr class="">
+    <tr>
       <th>Service:</th>
       <td>{{session.service_name}}</td>
     </tr>
-    <tr class="">
+    <tr>
       <th>Company:</th>
       <td>{{session.service_company}}</td>
     </tr>
-    <tr class="">
+    <tr>
       <th>Place: </th>
       <td>{{session.service_company_address}}</td>
     </tr>
-    <tr class="">
+    <tr>
       <th>Email: </th>
       <td>{{session.service_company_email}}</td>
     </tr>
-    <tr class="">
+    <tr>
       <th>Phone: </th>
       <td>{{session.service_company_phone_number}}</td>
+    </tr>
+    <tr>
+      <th>Estimated Wait Time: </th>
+      <td>{{session.estWaitTime}}</td>
     </tr>
   </table>
 
