@@ -1,0 +1,22 @@
+app.controller('BizUserProfileCtrl', ['$scope', '$http', '$auth', '$location', function($scope, $http, $auth, $location){
+  
+  var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
+  $scope.authuserid = $auth.validateUser().$$state.value.id
+  $scope.addForm  = {};
+  $scope.form     = {};
+ 
+  
+// redirect functions
+
+  $scope.redirectHistory = function(){
+    $location.path('/biz_users/history');
+  }
+
+  $scope.redirectProfile = function(){
+    $location.path('/biz_users/profile');
+  }
+
+  
+
+}]);
+

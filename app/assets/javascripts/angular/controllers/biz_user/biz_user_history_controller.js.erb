@@ -1,0 +1,67 @@
+app.controller('BizUserHistoryCtrl', ['$scope', '$http', '$auth', '$location', function($scope, $http, $auth, $location){
+  
+  var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
+  $scope.authuserid = $auth.validateUser().$$state.value.id
+  $scope.addForm  = {};
+  $scope.form     = {};
+ 
+  $http.get(url + '/biz_users/' + $scope.authuserid + '/services').success(function(response){
+    // console.log(response)
+    $scope.services = response;
+  })
+
+  $http.get(url + '/biz_users/' + $scope.authuserid + '/sessions/completed').success(function(response){
+    // console.log(response)
+    $scope.sessions = response;
+
+    //wait duration time
+    for (var i = 0; i<response.length; i++){
+      waitTimeSession = response[i]
+      waitTimeMM = new Date(waitTimeSession.updated_at) - new Date (waitTimeSession.created_at)
+      waitTimeSecond = waitTimeMM/1000;
+      waitTimeMin = waitTimeSecond/60 
+      response[i].waitTime = waitTimeMin
+      // console.log (response)
+      // $scope.waitedTimes = waitTimeMin
+    }
+  })
+
+
+  $scope.form.create = function(){
+    var data = $scope.addForm
+    
+    $http.post(url + '/services', data).success(function(response){
+     // console.log(response) 
+    })
+  }
+
+  var clickedService = ""
+
+  $scope.selectedService = function(service){
+    // console.log(service.service_name)
+    clickedService = service.service_name
+  }
+
+
+
+  $scope.selected = function(session, index, array){    
+    
+    if(clickedService == "All Services"){
+      return true
+    } else{
+      return session.service_name == clickedService
+    }
+  }
+
+
+// redirect functions
+  $scope.redirectHome = function(){
+    $location.path('/biz_users');
+  }
+
+  $scope.redirectProfile = function(){
+    $location.path('/biz_users/profile');
+  }
+
+
+}]);
