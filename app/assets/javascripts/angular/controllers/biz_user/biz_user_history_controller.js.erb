@@ -14,7 +14,7 @@ app.controller('BizUserHistoryCtrl', ['$scope', '$http', '$auth', '$location', f
     // console.log(response)
     $scope.sessions = response;
 
-    
+    //wait duration time
     for (var i = 0; i<response.length; i++){
       waitTimeSession = response[i]
       waitTimeMM = new Date(waitTimeSession.updated_at) - new Date (waitTimeSession.created_at)

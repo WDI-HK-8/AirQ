@@ -1,4 +1,5 @@
 app.controller('UserCtrl', ['$scope', '$http', '$auth', '$location', function($scope, $http, $auth, $location){
+  var service = 0;
   var user_id = $auth.validateUser().$$state.value.id;
   $scope.industry_selection = 'Select a Industry First';
   $scope.company_selection = 'Select a Industry First';
@@ -27,13 +28,37 @@ app.controller('UserCtrl', ['$scope', '$http', '$auth', '$location', function($s
     console.log(response);
   });
 
-  // on page load, display the sessions for this user
-  // var user_sessions = _.where($scope.sessions, {service: user_id})
+  // on page loads, the sessions wait time is calculated
+  $http.get(url + '/users/' + user_id + '/sessions').success(function(response){
+    //an array of objects including a service_id
+    // console.log('---->', response);
+    //each session for a user
+    for (var i = 0; i < response.length; i++) {
+      var userSessionServiceId = response[i].service_id;
+      //get sessions of all the services of the user's sessions
+      $http.get(url + '/services/' + userSessionServiceId + '/sessions').success(function(response){
+        
+        var sumWaitTime = 0;
+        //for each session of each service that the user is signed up in...
+        for(var k = 0; k < response.length; k++){
+          console.log('Each session-->',response[k]);
+          // console.log('updated at--->', new Date(response[k].updated_at));
+          // console.log('updated at--->', new Date(response[k].created_at));
+          var waitTimeMM = new Date(response[k].updated_at) - new Date(response[k].created_at);
+          var waitTimeMinutes = (waitTimeMM/1000)/60;
+          sumWaitTime += waitTimeMinutes;
+        }
+        console.log(sumWaitTime/response.length + 'avg. wait time minutes'); //NOW SUM UP THE TIME OF ALL THE WAIT TIMES, DIVIDE BY EACH SERVICE'S SESSION LENGTH COUNT
+
+      });
+    };
+
+
+  });
 
   // create the get request for creating a session
   $scope.createSession = function(service){
-    var service = _.where($scope.services, {service_name: service})
-    console.log(service);
+    var service = _.where($scope.services, {service_name: service});
     var data    = {
       service_id: service[0].id,
       user_id: user_id   
