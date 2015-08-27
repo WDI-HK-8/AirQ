@@ -6,6 +6,7 @@ app.controller('BizUserCtrl', ['$scope', '$http', '$auth', '$location', function
   $scope.form     = {};
  
   $http.get(url + '/biz_users/' + $scope.authuserid + '/services').success(function(response){
+
     $scope.services = response;
   })
 
@@ -14,21 +15,46 @@ app.controller('BizUserCtrl', ['$scope', '$http', '$auth', '$location', function
   })
 
   $scope.form.create = function(){
-    var data = $scope.addForm
-    ;
-
-    $http.post(url + '/services', data).success(function(response){ 
+    var data = $scope.addForm;
+    $http.post(url + '/services', data).success(function(response){
+     // console.log(response) 
     })
   }
 
-  $scope.selectedService = function(){
-    console.log($scope.services);
+  $scope.resolved = function(session){
+
+    var data = {'is_completed?': true}
+
+    $http.put(url + '/sessions/' + session.id, data).success(function(response){
+      session.hide = true
+    })
+
   }
 
-  $scope.comparator = function(actual, expected) {
-    actual.service_name 
-    session.service_name
+  var clickedService = ""
+
+  $scope.selectedService = function(service){
+    // console.log(service.service_name)
+    clickedService = service.service_name
   }
+  
+  $scope.selected = function(session, index, array){
+    
+      return session.service_name == clickedService
+  }
+
+
+// redirect functions
+
+  $scope.redirectHistory = function(){
+    $location.path('/biz_users/history');
+  }
+
+  $scope.redirectProfile = function(){
+    $location.path('/biz_users/profile');
+  }
+
+  
 
 }]);
 

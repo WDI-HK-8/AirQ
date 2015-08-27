@@ -19,7 +19,8 @@ companies  = [
   {
     name: 'nic',
     industry: 'Nothing'
-  }
+  },
+
 ];
 
 
@@ -53,9 +54,42 @@ users  = [
     last_name: 'ko'
   },
   {
-    first_name: 'harry',
+    first_name: 'fer',
     last_name: 'chen'
+  },
+  {
+    first_name: 'martin',
+    last_name: 'chen'
+  },
+  {
+    first_name: 'quinton',
+    last_name: 'chen'
+  },
+  {
+    first_name: 'harry',
+    last_name: 'shing'
+  },
+  {
+    first_name: 'Nicko',
+    last_name: 'cage'
+  },
+  {
+    first_name: 'Arnold',
+    last_name: 'chen'
+  },
+  {
+    first_name: 'Walter',
+    last_name: 'Ng'
+  },
+  {
+    first_name: 'Tricia',
+    last_name: 'chen'
+  },
+  {
+    first_name: 'Ella',
+    last_name: 'wong'
   }
+
 ];
 
 
@@ -63,7 +97,7 @@ users.each {|user|
   user = User.create(
     first_name:             user[:first_name], 
     last_name:              user[:last_name],  
-    email:                  "#{user[:last_name]}@#{user[:last_name]}.com", 
+    email:                  "#{user[:first_name]}@#{user[:last_name]}.com", 
     phone_number:           "#{user[:last_name]}123", 
     password:               "#{user[:last_name]}password", 
     password_confirmation:  "#{user[:last_name]}password"
@@ -84,13 +118,41 @@ sevices  = [
     biz_user_id: 3    
   },
   {
-    service_name: 'cash deposit',
+    service_name: 'Cash Deposit',
     biz_user_id: 2
   },
   {
     service_name: 'harry',
     biz_user_id: 4
-  }
+  },
+  {
+    service_name: 'Private banking',
+    biz_user_id: 1
+  },
+  {
+    service_name: 'Investment services',
+    biz_user_id: 1
+  },
+  {
+    service_name: 'Foreign Exchange (high value)',
+    biz_user_id: 1
+  },
+  {
+    service_name: 'Foreign Exchange (low value)',
+    biz_user_id: 1
+  },
+  {
+    service_name: 'PWM UHNW',
+    biz_user_id: 1
+  },
+  {
+    service_name: 'High yield loans',
+    biz_user_id: 1
+  },
+  {
+    service_name: 'Cheque Deposit',
+    biz_user_id: 1
+  },
 ];
 
 sevices.each {|service|
@@ -127,7 +189,82 @@ sessions  = [
     user_id: 5,
     service_id: 4,
     is_completed?: true
-  }
+  },
+  {
+    user_id: 6,
+    service_id: 12,
+    is_completed?: true
+  },
+  {
+    user_id: 7,
+    service_id: 11,
+    is_completed?: true
+  },
+  {
+    user_id: 8,
+    service_id: 10,
+    is_completed?: true
+  },
+  {
+    user_id: 1,
+    service_id: 9,
+    is_completed?: true
+  },
+  {
+    user_id: 10,
+    service_id: 8,
+    is_completed?: true
+  },
+  {
+    user_id: 11,
+    service_id: 9,
+    is_completed?: true
+  },
+  {
+    user_id: 12,
+    service_id: 10,
+    is_completed?: true
+  },
+  {
+    user_id: 12,
+    service_id: 7,
+    is_completed?: false
+  },
+  {
+    user_id: 11,
+    service_id: 7,
+    is_completed?: false
+  },
+  {
+    user_id: 8,
+    service_id: 2,
+    is_completed?: false
+  },
+  {
+    user_id: 5,
+    service_id: 9,
+    is_completed?: false
+  },
+  {
+    user_id: 8,
+    service_id: 10,
+    is_completed?: false
+  },
+  {
+    user_id: 10,
+    service_id: 2,
+    is_completed?: false
+  },
+  {
+    user_id: 11,
+    service_id: 12,
+    is_completed?: false
+  },
+  {
+    user_id: 10,
+    service_id: 4,
+    is_completed?: false
+  },
 ];  
 
 

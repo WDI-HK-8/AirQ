@@ -28,7 +28,12 @@ class BizUsersController < ApplicationController
 
   def sessions
     myBizUser = BizUser.find_by_id(params[:id])
-    @bizusersessions = myBizUser.sessions
+    @bizusersessions = myBizUser.sessions.where(is_completed?: false)
+  end
+
+  def completedSessionIndex
+    myBizUser = BizUser.find_by_id(params[:id])
+    @completedServiceSessions = myBizUser.sessions.where(is_completed?: true)
   end
 
   private

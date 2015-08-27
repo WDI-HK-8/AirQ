@@ -29,6 +29,14 @@ app.config(['$routeProvider','$locationProvider', '$authProvider', function($rou
     when('/biz_users', {
       templateUrl: "<%= asset_path('auth/biz_user_page.html')%>",
       controller: 'BizUserCtrl'
+    }).
+    when('/biz_users/history', {
+      templateUrl: "<%= asset_path('auth/biz_user_history_page.html')%>",
+      controller: 'BizUserHistoryCtrl'
+    }).
+    when('/biz_users/profile', {
+      templateUrl: "<%= asset_path('auth/biz_user_profile_page.html')%>",
+      controller: 'BizUserProfileCtrl'
     })
 
   $authProvider.configure([
