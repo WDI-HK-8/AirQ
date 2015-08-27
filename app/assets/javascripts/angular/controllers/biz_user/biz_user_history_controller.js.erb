@@ -13,7 +13,24 @@ app.controller('BizUserHistoryCtrl', ['$scope', '$http', '$auth', '$location', f
   $http.get(url + '/biz_users/' + $scope.authuserid + '/sessions/completed').success(function(response){
     // console.log(response)
     $scope.sessions = response;
+
+    
+    for (var i = 0; i<response.length; i++){
+      waitTimeSession = response[i]
+      waitTimeMM = new Date(waitTimeSession.updated_at) - new Date (waitTimeSession.created_at)
+      waitTimeSecond = waitTimeMM/1000;
+      waitTimeMin = waitTimeSecond/60 
+      response[i].waitTime = waitTimeMin
+      console.log (response)
+      // $scope.waitedTimes = waitTimeMin
+    }
+
+    
   })
+
+
+
+
 
   $scope.form.create = function(){
     var data = $scope.addForm
@@ -22,6 +39,23 @@ app.controller('BizUserHistoryCtrl', ['$scope', '$http', '$auth', '$location', f
      // console.log(response) 
     })
   }
+
+  var clickedService = ""
+
+  $scope.selectedService = function(service){
+    // console.log(service.service_name)
+    clickedService = service.service_name
+  }
+
+
+  $scope.selectedAll = function(){
+    console.log($this)
+  }
+  
+  $scope.selected = function(session, index, array){    
+    return session.service_name == clickedService
+  }
+
 
 // redirect functions
   $scope.redirectHome = function(){

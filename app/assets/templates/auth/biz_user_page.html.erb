@@ -1,7 +1,7 @@
 <navbar></navbar>
 
 <h2>Welcome to Air Q!</h2>
-<h3>{{user.company_name}}'s dashboard below</h3>
+<h3>{{user.company_name}}'s dashboard </h3>
 
 <div class="container">
   <div class="row">
@@ -25,9 +25,13 @@
             <th>Services on offer</th>
             <!-- <th>Selection</th> -->
           </tr>
-          <tr ng-repeat="service in services" > 
-            <td>{{service.service_name}}</td> 
-            <!-- <td><input  type="checkbox" ng-model="service.checkbox" ng-click="selectedService()" /></td>  -->
+          
+          <tr>
+            <td><a href ng-click="selectedService()">All Services</td>
+          </tr>
+
+          <tr ng-repeat="service in services | unique: 'service_name'" > 
+            <td><a href ng-click="selectedService(service)">{{service.service_name}}</td> 
           </tr>
         </table>
       </div>
@@ -36,28 +40,30 @@
   <!-- main content area -->
     
     <section class="main-content col-xs-9">
-      <!-- <section>
-      Search:<input ng-model="query" type="text"/>
-      </section> -->
+    
       <div class="table-responsive">
         <table class="table table-hover">
           <tr>
+            <th>Service ID</th>
             <th>Service Name</th>
             <th>First_Name</th>
             <th>Last_Name</th>
             <th>Email</th>
             <th>Phone Number</th>
-            <th>Queue order time</th>
-            <th>Estimated time to appointment</th>
+            <th>Queue Order Time</th>
+            <th>Estimated Wait Time</th>
+            <th>Done?</th>
           </tr>
-          <tr ng-repeat="session in sessions | orderBy:'service_name'">
+          <tr ng-repeat="session in sessions |filter: selected | orderBy:'service_name'" ng-hide="session.hide" ng-init="session.hide = false">
+            <td>{{session.service_id}}</td>
             <td>{{session.service_name}}</td>
             <td>{{session.user_first_name | uppercase}}</td>
             <td>{{session.user_last_name | uppercase}}</td>
             <td>{{session.user_email}}</td>
             <td>{{session.user_phone_num}}</td>
             <td>{{session.updated_at | date:"MM/dd/yyyy 'at' h:mma"}}</td>
-            <td>{{session.updated_at | date:"MM/dd/yyyy 'at' h:mma"}}</td>
+            <td>wait time</td>
+            <td><button class="btn btn-success" ng-click="resolved(session)">Finished!</button></td>
           </tr>
         </table>
       </div>

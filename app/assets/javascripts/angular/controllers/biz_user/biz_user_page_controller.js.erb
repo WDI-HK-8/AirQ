@@ -16,13 +16,34 @@ app.controller('BizUserCtrl', ['$scope', '$http', '$auth', '$location', function
   })
 
   $scope.form.create = function(){
-    var data = $scope.addForm
-    ;
-
+    var data = $scope.addForm;
     $http.post(url + '/services', data).success(function(response){
      // console.log(response) 
     })
   }
+
+  $scope.resolved = function(session){
+
+    var data = {'is_completed?': true}
+
+    $http.put(url + '/sessions/' + session.id, data).success(function(response){
+      session.hide = true
+    })
+
+  }
+
+  var clickedService = ""
+
+  $scope.selectedService = function(service){
+    // console.log(service.service_name)
+    clickedService = service.service_name
+  }
+  
+  $scope.selected = function(session, index, array){
+    
+      return session.service_name == clickedService
+  }
+
 
 // redirect functions
 
@@ -34,15 +55,7 @@ app.controller('BizUserCtrl', ['$scope', '$http', '$auth', '$location', function
     $location.path('/biz_users/profile');
   }
 
-  // $scope.selectedService = function(){
-  //   console.log($scope.services)
-
-  // }
-
-  // $scope.comparator = function(actual, expected) {
-  //   actual.service_name 
-  //   session.service_name
-  // }
+  
 
 }]);
 

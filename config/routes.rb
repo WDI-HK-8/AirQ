@@ -32,7 +32,9 @@ Rails.application.routes.draw do
   #biz_user update service name
   put '/services/:id' => 'services#update'
   #biz_user selects one service
-  get '/services/:id' => 'services#show'
+  get '/services/:id' => 'services#showSessions'
+  #biz_user selects one service with sessions completed
+  get '/services/:id' => 'services#showCompletedSessions'
   #biz_user delete service
   delete '/services/:id' => 'services#destroy'
 

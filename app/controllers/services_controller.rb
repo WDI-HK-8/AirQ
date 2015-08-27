@@ -1,5 +1,5 @@
 class ServicesController < ApplicationController
-  before_action :authenticate_biz_user!, :except => [:index, :show]
+  before_action :authenticate_biz_user!, :except => [:index, :showSessions]
 
   def index
     @services = Service.all
@@ -25,12 +25,14 @@ class ServicesController < ApplicationController
     end
   end
 
-  def show
-    @service = Service.find_by_id(params[:id])
-    if @service.nil?
-      render json: {message: "400 Bad Request"}, status: :bad_request
-    end
+  def showSessions
+     @serviceSessions  = Service.find_by_id(params[:id]).sessions.where(is_completed?: false)
   end
+
+  def showCompletedSessions
+     @serviceCompletedSessions  = Service.find_by_id(params[:id]).sessions.where(is_completed?: true)
+  end
+
 
   #show case all the services under that biz user
   def bizIndex

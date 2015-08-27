@@ -23,11 +23,12 @@
         <table class="table table-hover">
           <tr>
             <th>Services on offer</th>
-            <!-- <th>Selection</th> -->
           </tr>
-          <tr ng-repeat="service in services" > 
-            <td>{{service.service_name}}</td> 
-            <!-- <td><input  type="checkbox" ng-model="service.checkbox" ng-click="selectedService()" /></td>  -->
+          <tr>
+            <td><a href ng-click="selectedAll()" >All Services</td>
+          </tr>
+          <tr ng-repeat="service in services | unique: 'service_name'" > 
+            <td><a href ng-click="selectedService(service)">{{service.service_name}}</td> 
           </tr>
         </table>
       </div>
@@ -44,17 +45,17 @@
           <tr>
             <th>Date</th>
             <th>Time of queue</th>
-            <th>Waited time</th>
+            <th>Waited time (mins)</th>
             <th>Service Name</th>
             <th>First_Name</th>
             <th>Last_Name</th>
             <th>Email</th>
             <th>Phone Number</th>
           </tr>
-          <tr ng-repeat="session in sessions | orderBy:'updated_at'">
+          <tr ng-repeat="session in sessions| filter: selected | orderBy:'updated_at'">
             <td>{{session.updated_at | date:"'MMM d, y"}}</td>
-            <td>{{session.created_at | date:"medium"}}</td>
-            <td>{{session.created_at | date:"m"}} mins</td>
+            <td>{{session.created_at | date:"shortTime"}}</td>
+            <td>{{session.waitTime | number:0}}</td>
             <td>{{session.service_name}}</td>
             <td>{{session.user_first_name | uppercase}}</td>
             <td>{{session.user_last_name | uppercase}}</td>
