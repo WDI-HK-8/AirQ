@@ -21,10 +21,11 @@ app.controller('BizUserHistoryCtrl', ['$scope', '$http', '$auth', '$location', f
       waitTimeSecond = waitTimeMM/1000;
       waitTimeMin = waitTimeSecond/60 
       response[i].waitTime = waitTimeMin
-      console.log (response)
+      // console.log (response)
       // $scope.waitedTimes = waitTimeMin
     }
   })
+
 
   $scope.form.create = function(){
     var data = $scope.addForm
@@ -42,12 +43,14 @@ app.controller('BizUserHistoryCtrl', ['$scope', '$http', '$auth', '$location', f
   }
 
 
-  $scope.selectedAll = function(){
-    console.log($this)
-  }
-  
+
   $scope.selected = function(session, index, array){    
-    return session.service_name == clickedService
+    
+    if(clickedService == "All Services"){
+      return true
+    } else{
+      return session.service_name == clickedService
+    }
   }
 
 

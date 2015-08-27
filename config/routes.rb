@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   #biz_user selects one service
   get '/services/:id' => 'services#showSessions'
   #biz_user selects one service with sessions completed
-  get '/services/:id' => 'services#showCompletedSessions'
+  get '/services/:id/completed' => 'services#showCompletedSessions'
   #biz_user delete service
   delete '/services/:id' => 'services#destroy'
   #getting the ids

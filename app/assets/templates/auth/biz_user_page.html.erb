@@ -6,7 +6,7 @@
 <div class="container">
   <div class="row">
     <ul class="list-unstyled col-xs-12">
-      <li class="col-xs-3"><a>Dashboard</a></li>
+      <li class="col-xs-3"><a href ng-click="redirectHome()">Dashboard</a></li>
       <li class="col-xs-3"><a href data-toggle="modal" data-target="#addSModal">Add a service</a></li>
       <li class="col-xs-3"><a href ng-click="redirectHistory()">Service history</a></li>
       <li class="col-xs-3"><a href="#">Business Profile</a></li>
@@ -51,7 +51,7 @@
             <th>Email</th>
             <th>Phone Number</th>
             <th>Queue Order Time</th>
-            <th>Estimated Wait Time</th>
+            <th>Estimated Wait Time (mins)</th>
             <th>Done?</th>
           </tr>
           <tr ng-repeat="session in sessions |filter: selected | orderBy:'service_name'" ng-hide="session.hide" ng-init="session.hide = false">
@@ -62,7 +62,7 @@
             <td>{{session.user_email}}</td>
             <td>{{session.user_phone_num}}</td>
             <td>{{session.updated_at | date:"MM/dd/yyyy 'at' h:mma"}}</td>
-            <td>wait time</td>
+            <td>{{session.avgWaitTime}}</td>
             <td><button class="btn btn-success" ng-click="resolved(session)">Finished!</button></td>
           </tr>
         </table>
