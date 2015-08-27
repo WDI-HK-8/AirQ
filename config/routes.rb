@@ -61,7 +61,7 @@ Rails.application.routes.draw do
   post '/sessions' => 'sessions#create'
   # user delete session; unqueue 
   delete '/sessions/:id' => 'sessions#destroy'
-  # biz_user changes the status of is_completed? from false to true
+  # biz_user changes the status of is_completed from false to true
   put '/sessions/:id' => 'sessions#update'
 
   # Example of regular route:

@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
     end
   end
 
-  #allow biz_user to change the status of is_completed?
+  #allow biz_user to change the status of is_completed
   def update
     @session = Session.find_by_id(params[:id])
 
@@ -37,20 +37,19 @@ class SessionsController < ApplicationController
 
   #index of sessions under user
   def userIndex
-    myUser = User.find_by_id(params[:id])
-    @userSessions = Session.where(user_id: myUser.id)
+    @user_sessions = current_user.sessions
   end
 
   #index of sessions under biz_user
   def serviceIndex
     myService = Service.find_by_id(params[:id])
-    @serviceSessions = Session.where(service_id: myService.id, is_completed?: false)
+    @serviceSessions = Session.where(service_id: myService.id, is_completed: false)
   end
 
 
   private
   def session_params
-    params.require(:session).permit(:user_id, :service_id, :is_completed?)
+    params.require(:session).permit(:user_id, :service_id, :is_completed)
   end
 
 

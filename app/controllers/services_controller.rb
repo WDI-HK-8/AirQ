@@ -26,11 +26,11 @@ class ServicesController < ApplicationController
   end
 
   def showSessions
-     @serviceSessions  = Service.find_by_id(params[:id]).sessions.where(is_completed?: false)
+     @serviceSessions  = Service.find_by_id(params[:id]).sessions.where(is_completed: false)
   end
 
   def showCompletedSessions
-     @serviceCompletedSessions  = Service.find_by_id(params[:id]).sessions.where(is_completed?: true)
+     @serviceCompletedSessions  = Service.find_by_id(params[:id]).sessions.where(is_completed: true)
   end
 
 

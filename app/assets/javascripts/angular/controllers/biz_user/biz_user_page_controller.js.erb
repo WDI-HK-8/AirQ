@@ -77,7 +77,7 @@ app.controller('BizUserCtrl', ['$scope', '$http', '$auth', '$location', function
 
   $scope.resolved = function(session){
 
-    var data = {'is_completed?': true}
+    var data = {'is_completed': true}
 
     $http.put(url + '/sessions/' + session.id, data).success(function(response){
       session.hide = true
