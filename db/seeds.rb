@@ -73,106 +73,26 @@ sevices.each {|service|
 }
 
 sessions  = [
-  {
-    user_id: 1,
-    service_id: 2,
-    is_completed: false
-  },
-  {
-    user_id: 2,
-    service_id: 1,
-    is_completed: false
-  },
-  {
-    user_id: 3,
-    service_id: 3,    
-    is_completed: false    
-  },
-  {
-    user_id: 4,
-    service_id: 2,
-    is_completed: false
-  },
-  {
-    user_id: 5,
-    service_id: 4,
-    is_completed: true
-  },
-  {
-    user_id: 6,
-    service_id: 12,
-    is_completed: true
-  },
-  {
-    user_id: 7,
-    service_id: 11,
-    is_completed: true
-  },
-  {
-    user_id: 8,
-    service_id: 10,
-    is_completed: true
-  },
-  {
-    user_id: 1,
-    service_id: 9,
-    is_completed: true
-  },
-  {
-    user_id: 10,
-    service_id: 8,
-    is_completed: true
-  },
-  {
-    user_id: 11,
-    service_id: 9,
-    is_completed: true
-  },
-  {
-    user_id: 12,
-    service_id: 10,
-    is_completed: true
-  },
-  {
-    user_id: 12,
-    service_id: 7,
-    is_completed: false
-  },
-  {
-    user_id: 11,
-    service_id: 7,
-    is_completed: false
-  },
-  {
-    user_id: 8,
-    service_id: 2,
-    is_completed: false
-  },
-  {
-    user_id: 5,
-    service_id: 9,
-    is_completed: false
-  },
-  {
-    user_id: 8,
-    service_id: 10,
-    is_completed: false
-  },
-  {
-    user_id: 10,
-    service_id: 2,
-    is_completed: false
-  },
-  {
-    user_id: 11,
-    service_id: 12,
-    is_completed: false
-  },
-  {
-    user_id: 10,
-    service_id: 4,
-    is_completed: false
-  },
+  {user_id: 1, service_id: 2, is_completed: false },
+  {user_id: 2, service_id: 1, is_completed: false },
+  {user_id: 3, service_id: 2, is_completed: true },
+  {user_id: 4, service_id: 2, is_completed: false },
+  {user_id: 5, service_id: 4, is_completed: true },
+  {user_id: 6, service_id: 12, is_completed: true },
+  {user_id: 7, service_id: 2, is_completed: true },
+  {user_id: 8, service_id: 10, is_completed: true },
+  {user_id: 1, service_id: 9, is_completed: true },
+  {user_id: 10, service_id: 8, is_completed: true },
+  {user_id: 11, service_id: 9, is_completed: true },
+  {user_id: 12, service_id: 2, is_completed: true },
+  {user_id: 12, service_id: 7, is_completed: false },
+  {user_id: 11, service_id: 7, is_completed: false },
+  {user_id: 8, service_id: 2, is_completed: false },
+  {user_id: 5, service_id: 2, is_completed: false },
+  {user_id: 8, service_id: 10, is_completed: false },
+  {user_id: 10, service_id: 2, is_completed: false },
+  {user_id: 11, service_id: 12, is_completed: false },
+  {user_id: 10, service_id: 4, is_completed: false },
 ];  
 
 
