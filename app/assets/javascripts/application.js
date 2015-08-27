@@ -13,8 +13,10 @@
 //= require angular/angular
 //= require angular-route/angular-route
 //= require angular-cookie/angular-cookie
+//= require angular-filter/dist/angular-filter
 //= require ng-token-auth/dist/ng-token-auth
 //= require jquery/dist/jquery
 //= require bootstrap/dist/js/bootstrap
+//= require underscore/underscore
 
 //= require_tree .

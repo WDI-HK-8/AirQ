@@ -1,0 +1,123 @@
+app.controller('BizUserCtrl', ['$scope', '$http', '$auth', '$location', function($scope, $http, $auth, $location){
+  
+  var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
+  $scope.authuserid = $auth.validateUser().$$state.value.id //the id of the user
+  $scope.addForm  = {};
+  $scope.form     = {};
+ 
+  $http.get(url + '/biz_users/' + $scope.authuserid + '/services').success(function(response){
+    $scope.services = response;
+  })
+
+
+
+
+  var avgWaitTimeInvestmentS = 0
+  var avgWaitTimePWMUHNW = 0
+  
+
+  //get estimated wait time from the completed sessions
+   $http.get(url + '/biz_users/' + $scope.authuserid + '/sessions/completed').success(function(response){
+    
+    var sumTimeInvestmentService = 0
+    var sumCountInvestmentService = 0
+    var sumTimePWMUHNW = 0
+    var sumCountPWMUHNW = 0
+
+    for (var i = 0; i<response.length; i++){
+      waitTimeSession = response[i]
+      waitTimeMM = new Date(waitTimeSession.updated_at) - new Date (waitTimeSession.created_at)
+      waitTimeSecond = waitTimeMM/1000;
+      waitTimeMin = waitTimeSecond/60 
+      response[i].waitTime = waitTimeMin
+    
+      if (response[i].service_name == "Investment services"){
+        sumTimeInvestmentService += response[i].waitTime
+      } else if (response[i].service_name == "PWM UHNW"){
+        sumTimePWMUHNW += response[i].waitTime
+      }
+
+      if (response[i].service_name == "Investment services"){
+        sumCountInvestmentService += 1
+      } else if (response[i].service_name == "PWM UHNW"){
+        sumCountPWMUHNW += 1
+      }     
+
+    }
+
+    avgWaitTimeInvestmentS = sumTimeInvestmentService/sumCountInvestmentService
+    avgWaitTimePWMUHNW = sumTimePWMUHNW/sumCountPWMUHNW
+    
+
+    //get all the sessions under a biz_user
+    $http.get(url + '/biz_users/' + $scope.authuserid + '/sessions').success(function(responseWithTime){
+      $scope.sessions = responseWithTime;
+
+      for (var k = 0; k <responseWithTime.length; k++){
+        
+        if (responseWithTime[k].service_name == "Investment services"){
+          responseWithTime[k].avgWaitTime = avgWaitTimeInvestmentS
+        } else if(responseWithTime[k].service_name == "PWM UHNW"){responseWithTime[k].avgWaitTime = avgWaitTimePWMUHNW}
+
+        console.log(responseWithTime)
+      }
+
+    })
+  })
+
+
+
+
+  $scope.form.create = function(){
+    var data = $scope.addForm;
+    $http.post(url + '/services', data).success(function(response){
+     // console.log(response) 
+    })
+  }
+
+  $scope.resolved = function(session){
+
+    var data = {'is_completed?': true}
+
+    $http.put(url + '/sessions/' + session.id, data).success(function(response){
+      session.hide = true
+      // console.log(response)
+    })
+
+  }
+
+  var clickedService = ""
+
+  $scope.selectedService = function(service){
+    // console.log(service.service_name)
+    clickedService = service.service_name
+  }
+  
+  $scope.selected = function(session, index, array){
+    
+      return session.service_name == clickedService
+  }
+
+
+
+
+
+
+
+// redirect functions
+
+  $scope.redirectHistory = function(){
+    $location.path('/biz_users/history');
+  }
+
+  $scope.redirectProfile = function(){
+    $location.path('/biz_users/profile');
+  }
+
+  $scope.redirectHome = function(){
+    $location.path('/biz_users');
+  }
+  
+
+}]);
+
